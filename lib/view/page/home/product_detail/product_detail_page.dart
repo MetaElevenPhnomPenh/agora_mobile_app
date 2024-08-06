@@ -47,11 +47,14 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                 });
               },
               itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Center(
-                    child: Image.network(
-                      "https://static.vecteezy.com/system/resources/thumbnails/035/320/453/small_2x/ai-generated-blank-grey-hoodie-front-and-back-view-mockup-isolated-on-transparent-background-free-png.png",
+                return GestureDetector(
+                  onTap: () => app.navigate.pushNamed(AppImagePreview.route),
+                  child: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Center(
+                      child: Image.network(
+                        "https://static.vecteezy.com/system/resources/thumbnails/035/320/453/small_2x/ai-generated-blank-grey-hoodie-front-and-back-view-mockup-isolated-on-transparent-background-free-png.png",
+                      ),
                     ),
                   ),
                 );

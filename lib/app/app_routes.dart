@@ -11,6 +11,8 @@ class AppRoutes {
         return _buildRoute(const ProductDetailPage(), settings);
       case CountryPhonePage.route:
         return _buildRoute(const CountryPhonePage(), settings);
+      case AppImagePreview.route:
+        return _buildRoute(const AppImagePreview(), settings);
       default:
         return _buildRoute(
           Scaffold(
