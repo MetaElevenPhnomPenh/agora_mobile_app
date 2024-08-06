@@ -9,19 +9,8 @@ class PrivacyPolicyPage extends StatefulWidget {
   @override
   State<PrivacyPolicyPage> createState() => _PrivacyPolicyPageState();
 }
+
 class _PrivacyPolicyPageState extends State<PrivacyPolicyPage> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,9 +21,7 @@ class _PrivacyPolicyPageState extends State<PrivacyPolicyPage> {
       body: AppListViewBuilder(
         padding: app.screenPadding,
         children: [
-          const Text(
-            'At Agora, safeguarding your privacy is paramount. We collect limited personal information for account creation and transaction purposes. Your data is used solely for enhancing your experience on our platform. We prioritize data security and do not share your information without your consent.'
-          ),
+          const Text('At Agora, safeguarding your privacy is paramount. We collect limited personal information for account creation and transaction purposes. Your data is used solely for enhancing your experience on our platform. We prioritize data security and do not share your information without your consent.'),
         ],
       ).builder(),
     );

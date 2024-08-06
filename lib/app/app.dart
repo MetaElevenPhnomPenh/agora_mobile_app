@@ -4,8 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 class App extends StatelessWidget {
   const App({super.key});
 
-  static final RouteObserver<Route<dynamic>> routeObserver =
-      RouteObserver<Route<dynamic>>();
+  static final RouteObserver<Route<dynamic>> routeObserver = RouteObserver<Route<dynamic>>();
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class App extends StatelessWidget {
         darkTheme: customDarkTheme,
         navigatorKey: globalKey,
         onGenerateRoute: AppRoutes.generateRoute,
-        home: const HomePage(),
+        home: const MePage(),
       ),
     );
   }
