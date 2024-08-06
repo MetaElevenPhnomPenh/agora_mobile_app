@@ -515,7 +515,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 6846R83F46;
+				DEVELOPMENT_TEAM = KWW5D75B95;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = Agora;
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -524,7 +524,7 @@
 					"@executable_path/Frameworks",
 				);
 				PACKAGE_CONFIG = .dart_tool/package_config.json;
-				PRODUCT_BUNDLE_IDENTIFIER = com.agora.meta;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agora.meta1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -610,7 +610,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 6846R83F46;
+				DEVELOPMENT_TEAM = KWW5D75B95;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = Agora;
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -619,7 +619,7 @@
 					"@executable_path/Frameworks",
 				);
 				PACKAGE_CONFIG = .dart_tool/package_config.json;
-				PRODUCT_BUNDLE_IDENTIFIER = com.agora.meta;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agora.meta1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -700,7 +700,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 6846R83F46;
+				DEVELOPMENT_TEAM = KWW5D75B95;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = Agora;
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -709,7 +709,7 @@
 					"@executable_path/Frameworks",
 				);
 				PACKAGE_CONFIG = .dart_tool/package_config.json;
-				PRODUCT_BUNDLE_IDENTIFIER = com.agora.meta;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agora.meta1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -795,7 +795,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 6846R83F46;
+				DEVELOPMENT_TEAM = KWW5D75B95;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[DEV] Agora";
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -804,7 +804,7 @@
 					"@executable_path/Frameworks",
 				);
 				PACKAGE_CONFIG = .dart_tool/package_config.json;
-				PRODUCT_BUNDLE_IDENTIFIER = com.agora.meta.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agora.meta1.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -888,7 +888,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 6846R83F46;
+				DEVELOPMENT_TEAM = KWW5D75B95;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[DEV] Agora";
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -897,7 +897,7 @@
 					"@executable_path/Frameworks",
 				);
 				PACKAGE_CONFIG = .dart_tool/package_config.json;
-				PRODUCT_BUNDLE_IDENTIFIER = com.agora.meta.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agora.meta1.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -980,7 +980,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 6846R83F46;
+				DEVELOPMENT_TEAM = KWW5D75B95;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[DEV] Agora";
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -989,7 +989,7 @@
 					"@executable_path/Frameworks",
 				);
 				PACKAGE_CONFIG = .dart_tool/package_config.json;
-				PRODUCT_BUNDLE_IDENTIFIER = com.agora.meta.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agora.meta1.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1075,7 +1075,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-stg";
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 6846R83F46;
+				DEVELOPMENT_TEAM = KWW5D75B95;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[STG] Agora";
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -1084,7 +1084,7 @@
 					"@executable_path/Frameworks",
 				);
 				PACKAGE_CONFIG = .dart_tool/package_config.json;
-				PRODUCT_BUNDLE_IDENTIFIER = com.agora.meta.stg;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agora.meta1.stg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1170,7 +1170,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-stg";
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 6846R83F46;
+				DEVELOPMENT_TEAM = KWW5D75B95;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[STG] Agora";
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -1179,7 +1179,7 @@
 					"@executable_path/Frameworks",
 				);
 				PACKAGE_CONFIG = .dart_tool/package_config.json;
-				PRODUCT_BUNDLE_IDENTIFIER = com.agora.meta.stg;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agora.meta1.stg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1260,7 +1260,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-stg";
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 6846R83F46;
+				DEVELOPMENT_TEAM = KWW5D75B95;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[STG] Agora";
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -1269,7 +1269,7 @@
 					"@executable_path/Frameworks",
 				);
 				PACKAGE_CONFIG = .dart_tool/package_config.json;
-				PRODUCT_BUNDLE_IDENTIFIER = com.agora.meta.stg;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agora.meta1.stg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

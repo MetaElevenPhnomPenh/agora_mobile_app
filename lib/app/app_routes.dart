@@ -17,6 +17,8 @@ class AppRoutes {
         return _buildRoute(const PrivacyPolicyPage(), settings);
       case UserAgreementPage.route:
         return _buildRoute(const UserAgreementPage(), settings);
+      case AppImagePreview.route:
+        return _buildRoute(const AppImagePreview(), settings);
       default:
         return _buildRoute(
           Scaffold(
