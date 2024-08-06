@@ -1,0 +1,31 @@
+import 'package:agora/export.dart';
+
+class AppRoutes {
+  static Route<dynamic> generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case LoginOtpPage.route:
+        return _buildRoute(const LoginOtpPage(), settings);
+      case LoginPasswordPage.route:
+        return _buildRoute(const LoginPasswordPage(), settings);
+      case ProductDetailPage.route:
+        return _buildRoute(const ProductDetailPage(), settings);
+      case CountryPhonePage.route:
+        return _buildRoute(const CountryPhonePage(), settings);
+      default:
+        return _buildRoute(
+          Scaffold(
+            body: Center(
+              child: Text(
+                'No route defined for ${settings.name}',
+              ),
+            ),
+          ),
+          settings,
+        );
+    }
+  }
+
+  static _buildRoute(Widget widget, RouteSettings settings) {
+    return MaterialPageRoute(builder: (context) => widget, settings: settings);
+  }
+}
