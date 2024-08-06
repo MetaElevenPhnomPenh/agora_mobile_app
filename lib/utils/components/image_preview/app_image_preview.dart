@@ -3,10 +3,18 @@ import 'package:photo_view/photo_view.dart';
 
 import '../../../../export.dart';
 
-class AppImagePreview extends StatelessWidget {
+class AppImagePreview extends StatefulWidget {
   static const String route = "/AppImagePreview";
 
   const AppImagePreview({super.key});
+
+  @override
+  State<AppImagePreview> createState() => _AppImagePreviewState();
+}
+
+class _AppImagePreviewState extends State<AppImagePreview> {
+  late PageController _pageController = PageController(initialPage: 0);
+  int _currentPage = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +22,12 @@ class AppImagePreview extends StatelessWidget {
       body: Stack(
         children: [
           PageView.builder(
+            controller: _pageController,
+            onPageChanged: (page) {
+              setState(() {
+                _currentPage = page;
+              });
+            },
             itemCount: 5,
             itemBuilder: (context, ind) {
               /// if image preview
@@ -49,18 +63,18 @@ class AppImagePreview extends StatelessWidget {
                 children: [
                   const Spacer(),
                   IconButton(
-                    onPressed: () {
-                      //
-                    },
+                    onPressed: () => _pageController.previousPage(
+                        duration: const Duration(milliseconds: 200),
+                        curve: Curves.linear),
                     icon: const Icon(
                       Icons.arrow_back_ios_new_rounded,
                       color: AppColor.whiteColor,
                     ),
                   ),
                   const SizedBox(width: 24),
-                  const Text(
-                    "1/2",
-                    style: TextStyle(
+                  Text(
+                    "${_currentPage + 1}/5",
+                    style: const TextStyle(
                       fontSize: 17,
                       color: AppColor.whiteColor,
                       fontWeight: FontWeight.w500,
@@ -68,7 +82,9 @@ class AppImagePreview extends StatelessWidget {
                   ),
                   const SizedBox(width: 24),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () => _pageController.nextPage(
+                        duration: const Duration(milliseconds: 200),
+                        curve: Curves.linear),
                     icon: const Icon(
                       Icons.arrow_forward_ios_rounded,
                       color: AppColor.whiteColor,

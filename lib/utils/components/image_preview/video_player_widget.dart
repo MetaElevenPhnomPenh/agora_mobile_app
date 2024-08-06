@@ -1,3 +1,4 @@
+import 'package:chewie/chewie.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../export.dart';
@@ -11,23 +12,31 @@ class VideoPlayerWidget extends StatefulWidget {
 
 class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   late VideoPlayerController _controller;
+  late ChewieController _chewieController;
 
   @override
   void initState() {
-    final _uri = Uri.parse(
-        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4');
-    _controller = VideoPlayerController.networkUrl(_uri)
-      ..initialize().then(
-        (_) {
-          if (mounted) {
-            setState(() {});
-          } else {
-            _controller.dispose();
-          }
-        },
-      )
-      ..play();
+    _videoInitial();
     super.initState();
+  }
+
+  void _videoInitial() async {
+    final _uri = Uri.parse(
+      'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+    );
+    _controller = VideoPlayerController.networkUrl(_uri);
+    await _controller.initialize();
+    if (mounted) {
+      setState(() {});
+      _chewieController = ChewieController(
+        videoPlayerController: _controller,
+        autoPlay: true,
+        looping: true,
+      );
+    } else {
+      _chewieController.dispose();
+      _controller.dispose();
+    }
   }
 
   @override
@@ -38,21 +47,23 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
         color: AppColor.blackColor,
         child: AspectRatio(
           aspectRatio: _controller.value.aspectRatio,
-          child: VideoPlayer(
-            _controller,
+          child: Chewie(
+            controller: _chewieController,
           ),
         ),
       );
     }
-
-    return const Center(
-      child: CircularProgressIndicator(),
+    return Container(
+      alignment: Alignment.center,
+      color: AppColor.blackColor,
+      child: const CircularProgressIndicator(),
     );
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _chewieController.dispose();
     super.dispose();
   }
 }
