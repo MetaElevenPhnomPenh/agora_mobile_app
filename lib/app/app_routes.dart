@@ -11,6 +11,12 @@ class AppRoutes {
         return _buildRoute(const ProductDetailPage(), settings);
       case CountryPhonePage.route:
         return _buildRoute(const CountryPhonePage(), settings);
+      case BuyerNoticePage.route:
+        return _buildRoute(const BuyerNoticePage(), settings);
+      case PrivacyPolicyPage.route:
+        return _buildRoute(const PrivacyPolicyPage(), settings);
+      case UserAgreementPage.route:
+        return _buildRoute(const UserAgreementPage(), settings);
       default:
         return _buildRoute(
           Scaffold(

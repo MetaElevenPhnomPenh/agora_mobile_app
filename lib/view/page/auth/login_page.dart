@@ -1,4 +1,5 @@
 import 'package:agora/export.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/phone_number.dart';
@@ -108,10 +109,19 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 TextSpan(text: ' ' + T.iHaveReadAndAgreedToThe.r, style: const TextStyle(color: AppColor.greyLight)),
-                TextSpan(text: '《' + T.userAgreement.r + '》'),
-                TextSpan(text: '《' + T.privacyPolicy.r + '》'),
+                TextSpan(
+                  text: '《' + T.userAgreement.r + '》',
+                  recognizer: TapGestureRecognizer()..onTap = () => context.navigate.pushNamed(UserAgreementPage.route),
+                ),
+                TextSpan(
+                  text: '《' + T.privacyPolicy.r + '》',
+                  recognizer: TapGestureRecognizer()..onTap = () => context.navigate.pushNamed(PrivacyPolicyPage.route),
+                ),
                 TextSpan(text: T.and.r),
-                TextSpan(text: '《' + T.buyerNotice.r + '》。'),
+                TextSpan(
+                  text: '《' + T.buyerNotice.r + '》。',
+                  recognizer: TapGestureRecognizer()..onTap = () => context.navigate.pushNamed(BuyerNoticePage.route),
+                ),
               ],
             ),
             style: context.textTheme.labelMedium,
