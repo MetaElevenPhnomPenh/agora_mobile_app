@@ -57,7 +57,6 @@ class AppHttpHelper {
     throw AppHttpError(status: AppHttpStatus.error, message: checkKeyMap(response, 'message') ? response['message'] : T.somethingUnexpectedWentWrong.r);
   }
 
-
   static retryRequest(DioError error, ErrorInterceptorHandler _handler) async {
     final v = await _dio.request(
       error.requestOptions.path,

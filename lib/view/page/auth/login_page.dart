@@ -3,23 +3,33 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/phone_number.dart';
 
-class LoginOtpPage extends StatefulWidget {
-  const LoginOtpPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
-  static const route = '/LoginOtpPage';
+  static const route = '/LoginPage';
 
   @override
-  State<LoginOtpPage> createState() => _LoginOtpPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginOtpPageState extends State<LoginOtpPage> {
+class _LoginPageState extends State<LoginPage> {
   late final LoginCubit cubit;
+  bool isOtp = true;
   Country country = PhoneNumber.getCountry(app.DEFAULT_COUNTRY_CODE);
 
   @override
   void initState() {
     cubit = context.read<LoginCubit>();
+    WidgetsBinding.instance.addPostFrameCallback((_) => onLoadedWidget(context));
     super.initState();
+  }
+
+  void onLoadedWidget(BuildContext context) {
+    final arg = context.navigate.getArg<bool>();
+    if (arg is bool) {
+      isOtp = arg;
+    }
+    setState(() {});
   }
 
   @override
@@ -58,21 +68,35 @@ class _LoginOtpPageState extends State<LoginOtpPage> {
               country = v;
             }),
           ),
-          TextFieldWidget(
-            hintText: T.passwordLogin.r,
-            obscureText: true,
-          ),
-          SizedBox(
-            width: context.mediaQuery.size.width,
-            child: FilledButton(
-              onPressed: () => cubit.request(),
-              child: Text(T.getVerificationCode.r),
+          if (isOtp) ...[
+            SizedBox(
+              width: context.mediaQuery.size.width,
+              child: FilledButton(
+                onPressed: () => cubit.request(),
+                child: Text(T.getVerificationCode.r),
+              ),
             ),
-          ),
-          AppGestureDetector(
-            onTap: () => context.navigate.pushNamed(LoginPasswordPage.route),
-            child: Center(child: Text(T.passwordLogin.r, style: context.textTheme.bodyLarge)),
-          ),
+            AppGestureDetector(
+              onTap: () => context.navigate.pushNamed(LoginPage.route, false),
+              child: Center(child: Text(T.passwordLogin.r, style: context.textTheme.bodyLarge)),
+            ),
+          ] else ...[
+            TextFieldWidget(
+              hintText: T.passwordLogin.r,
+              obscureText: true,
+            ),
+            SizedBox(
+              width: context.mediaQuery.size.width,
+              child: FilledButton(
+                onPressed: () => cubit.request(),
+                child: Text(T.login.r),
+              ),
+            ),
+            AppGestureDetector(
+              onTap: () => context.navigate.pop(),
+              child: Center(child: Text(T.otpLogin.r, style: context.textTheme.bodyLarge)),
+            ),
+          ],
           Text.rich(
             TextSpan(
               children: [

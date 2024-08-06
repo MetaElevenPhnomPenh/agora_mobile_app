@@ -42,7 +42,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget>
                             Icons.login,
                             color: Colors.teal,
                           ),
-                          onTap: () => app.navigate.pushNamed(LoginOtpPage.route),
+                          onTap: () => app.navigate.pushNamed(LoginPage.route),
                         ),
                       ],
                     ),

@@ -94,14 +94,7 @@ class BaseResponse<K> {
             : getEmptyBaseResponsePaginateMeta,
       );
     } catch (e) {
-      log('E: ${e}');
-      return BaseResponse<K>(
-        success: true,
-        message: "",
-        data: null,
-        list: [],
-        meta: getEmptyBaseResponsePaginateMeta,
-      );
+      rethrow;
     }
   }
 }

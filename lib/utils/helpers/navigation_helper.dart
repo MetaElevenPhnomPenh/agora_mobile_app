@@ -18,8 +18,12 @@ class NavigationHelper {
 
   BuildContext get getContext => context ?? _context;
 
-  T getArg<T>() {
-    return ModalRoute.of(getContext)!.settings.arguments as T;
+  T? getArg<T>() {
+    try {
+      return ModalRoute.of(getContext)!.settings.arguments as T;
+    } catch (_) {
+      return null;
+    }
   }
 
   Future<T?> push<T>(Widget widget, {T? arguments, String? routeName}) async {
