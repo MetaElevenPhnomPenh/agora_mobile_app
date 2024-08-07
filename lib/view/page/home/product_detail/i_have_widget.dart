@@ -1,15 +1,15 @@
 import 'package:agora/export.dart';
 
-class FavoriteWidget extends StatefulWidget {
-  const FavoriteWidget({super.key});
+class IHaveWidget extends StatefulWidget {
+  const IHaveWidget({super.key});
 
-  static const String route = "/FavoriteWidget";
+  static const String route = "/IHaveWidget";
 
   @override
-  State<FavoriteWidget> createState() => _FavoriteWidgetState();
+  State<IHaveWidget> createState() => _IHaveWidgetState();
 }
 
-class _FavoriteWidgetState extends State<FavoriteWidget> {
+class _IHaveWidgetState extends State<IHaveWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,13 +26,19 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
             children: [
               Expanded(
                 child: Text(
-                  "Text something herer..",
+                  "Text something here..",
                   style: context.textTheme.bodySmall?.copyWith(
                     color: AppColor.darkGreyColor,
                     fontSize: 12,
                   ),
                 ),
               ),
+              const Icon(
+                Icons.check_circle_outline_rounded,
+                size: 12,
+                color: AppColor.darkGreyColor,
+              ),
+              const SizedBox(width: 2),
               Text(
                 "text here",
                 style: context.textTheme.bodySmall?.copyWith(
@@ -81,10 +87,8 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
               children: [
                 _size(text: "S"),
                 const Spacer(),
-                _price(text: "150"),
-                const SizedBox(width: 12),
                 Icon(
-                  Icons.favorite_border,
+                  Icons.check_circle_outline_rounded,
                   color: Colors.grey[700],
                   size: 20,
                 ),
