@@ -1,6 +1,22 @@
 import 'package:agora/export.dart';
 
 extension IntExtension on int {
+  EdgeInsets pt() {
+    return EdgeInsets.only(top: this.toDouble());
+  }
+
+  EdgeInsets pb() {
+    return EdgeInsets.only(bottom: this.toDouble());
+  }
+
+  EdgeInsets pl() {
+    return EdgeInsets.only(left: this.toDouble());
+  }
+
+  EdgeInsets pr() {
+    return EdgeInsets.only(right: this.toDouble());
+  }
+
   EdgeInsets px() {
     return EdgeInsets.symmetric(horizontal: this.toDouble());
   }

@@ -39,22 +39,23 @@ class _MePageState extends State<MePage> {
     );
   }
 
-  Widget iconWidget({required String title}) {
+  Widget iconWidget({required String title, Widget? iconWidget}) {
     return Expanded(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Icon(
-            Icons.add_chart,
-            size: 30,
-          ),
+          iconWidget ??
+              const Icon(
+                Icons.add_chart,
+                size: 30,
+              ),
           2.sh(),
           Center(
             child: Text(
               title,
               style: context.textTheme.labelMedium?.copyWith(
-                fontSize: 11.7,
+                fontSize: 12.5,
               ),
               textAlign: TextAlign.center,
             ),
@@ -74,11 +75,16 @@ class _MePageState extends State<MePage> {
             Icons.add_chart,
             size: 30,
           ),
-          8.sw(),
           Expanded(
             child: Text(
               title,
               style: context.textTheme.labelMedium,
+            ),
+          ),
+          Text(
+            '0',
+            style: context.textTheme.labelMedium?.copyWith(
+              color: AppColor.greyLight,
             ),
           ),
           const Icon(
@@ -86,44 +92,78 @@ class _MePageState extends State<MePage> {
             size: 14,
             color: AppColor.greyLightI,
           ),
+        ].separator((i) => 8.sw()),
+      ),
+    );
+  }
+
+  Widget textRowWidget({required String title, required String sub}) {
+    return Expanded(
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: context.textTheme.headlineSmall?.copyWith(
+                    fontSize: 14,
+                  ),
+                ),
+                4.sh(),
+                Text(sub, style: context.textTheme.labelMedium),
+              ],
+            ),
+          ),
+          5.sw(),
+          const Icon(
+            Icons.arrow_forward_ios_outlined,
+            size: 14,
+            color: AppColor.greyLight,
+          ),
         ],
       ),
     );
   }
 
   Widget sectionAvatar() {
-    return Container(
-      padding: app.screenPaddingX,
-      child: Row(
-        children: [
-          SizedBox(
-            height: 60,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(1000),
-              child: AspectRatio(
-                aspectRatio: 1,
-                child: Container(
-                  color: AppColor.primaryColor,
+    return AppGestureDetector(
+      onTap: () => context.navigate.pushNamed(LoginPage.route),
+      child: Container(
+        padding: app.screenPaddingX,
+        child: Row(
+          children: [
+            SizedBox(
+              height: 60,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(1000),
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: Container(
+                    color: AppColor.primaryColor,
+                  ),
                 ),
               ),
             ),
-          ),
-          10.sw(),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Log in OR Register', style: context.textTheme.headlineSmall),
-                Text('Log in to get more surprises', style: context.textTheme.bodySmall),
-              ],
+            10.sw(),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Log in OR Register', style: context.textTheme.headlineSmall),
+                  Text('Log in to get more surprises', style: context.textTheme.bodySmall),
+                ],
+              ),
             ),
-          ),
-          const Icon(
-            Icons.arrow_forward_ios_outlined,
-            size: 14,
-          ),
-        ],
+            const Icon(
+              Icons.arrow_forward_ios_outlined,
+              size: 14,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -237,7 +277,89 @@ class _MePageState extends State<MePage> {
               ),
             ),
           ),
-        ].separator((index) => 20.sh()),
+          Card(
+            child: Container(
+              margin: 13.p(),
+              width: context.mediaQuery.size.width,
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Wallet', style: context.textTheme.headlineMedium),
+                      Row(
+                        children: [
+                          Text('All', style: context.textTheme.labelMedium),
+                          5.sw(),
+                          const Icon(
+                            Icons.arrow_forward_ios_outlined,
+                            size: 10,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  13.sh(),
+                  Row(
+                    children: [
+                      iconWidget(
+                        title: 'Coupon',
+                        iconWidget: Text('0', style: context.textTheme.displayMedium),
+                      ),
+                      iconWidget(
+                        title: 'Balance',
+                        iconWidget: Text('\$0', style: context.textTheme.displayMedium),
+                      ),
+                      iconWidget(
+                        title: 'Feel free for save',
+                        iconWidget: Container(
+                          padding: 4.pb(),
+                          child: Text(
+                            'large coupon',
+                            style: context.textTheme.labelMedium?.copyWith(
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                      ),
+                      iconWidget(
+                        title: 'Allowance',
+                        iconWidget: Text('\$0', style: context.textTheme.displayMedium),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Card(
+            child: Container(
+              margin: 13.p(),
+              width: context.mediaQuery.size.width,
+              child: Row(
+                children: [
+                  textRowWidget(title: 'Individual seller', sub: 'Earn living allowance'),
+                  10.sw(),
+                  textRowWidget(title: 'Settled in', sub: 'Invite'),
+                ],
+              ),
+            ),
+          ),
+          Card(
+            child: Container(
+              margin: 13.p(),
+              width: context.mediaQuery.size.width,
+              child: Row(
+                children: [
+                  iconWidget(title: 'Star Forest'),
+                  iconWidget(title: 'Receive Coupon'),
+                  iconWidget(title: 'Lottery'),
+                  iconWidget(title: 'Get a price'),
+                ],
+              ),
+            ),
+          ),
+        ].separator((index) => 13.sh()),
       ),
     );
   }

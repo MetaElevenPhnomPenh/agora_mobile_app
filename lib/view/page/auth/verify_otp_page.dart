@@ -25,16 +25,18 @@ class VerifyOtpPage extends StatefulWidget {
 
 class _VerifyOtpPageState extends State<VerifyOtpPage> {
   late final VerifyOtpCubit cubit;
+  late final RegisterCubit cubitRegister;
   late final TextEditingController otpCodeTextController = TextEditingController();
 
   VerifyOtpPara? para;
 
   int _durationCountDown = 120; // 120 seconds.
-  bool showResendButton = false;
+  bool isShowResendButton = false;
 
   @override
   void initState() {
     cubit = context.read<VerifyOtpCubit>();
+    cubitRegister = context.read<RegisterCubit>();
     WidgetsBinding.instance.addPostFrameCallback((_) => onLoadedWidget(context));
     super.initState();
   }
@@ -115,9 +117,16 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                   ),
                 ),
               ),
-              if (showResendButton) ...[
+              if (isShowResendButton) ...[
                 AppGestureDetector(
-                  //onTap: (){},
+                  onTap: () {
+                    if (para != null) {
+                      context.navigate.pop();
+                      cubitRegister.request(data: RegisterRequest(phoneNumber: para!.phone));
+                    }
+                    isShowResendButton = false;
+                    setState(() {});
+                  },
                   child: Center(
                     child: Text(
                       'Resent',
@@ -138,7 +147,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                       ),
                     ),
                     interval: const Duration(seconds: 1),
-                    onFinished: () => setState(() => showResendButton = true),
+                    onFinished: () => setState(() => isShowResendButton = true),
                   ),
                 ),
               ],
