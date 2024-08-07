@@ -196,6 +196,27 @@ class T {
     km: 'ខុ្ញ',
   );
 
+  static const enter4DigitNumberThatWasSentTo = _(
+    en: 'Enter 4 Digit Number that was sent to',
+    zh: '输入发送到发送给的4位数字',
+    vi: 'Nhập số 4 chữ số được gửi đến',
+    km: 'បញ្ចូលលេខ 4 ខ្ទង់ដែលត្រូវបានផ្ញើទៅ',
+  );
+
+  static const verification = _(
+    en: 'Verification',
+    zh: '确认',
+    vi: 'xác minh',
+    km: 'ការផ្ទ្យេងផ្ទាត់',
+  );
+
+  static const seconds = _(
+    en: 'seconds',
+    zh: '秒',
+    vi: 'giây',
+    km: 'វិនាទី',
+  );
+
   static I18n t(String text) {
     if (_map.containsKey(text)) {
       return _map[text]!;

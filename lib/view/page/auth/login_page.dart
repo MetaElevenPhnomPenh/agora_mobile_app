@@ -19,6 +19,8 @@ class _LoginPageState extends State<LoginPage> {
   Country country = PhoneNumber.getCountry(app.DEFAULT_COUNTRY_CODE);
   TextEditingController phoneTextController = TextEditingController();
 
+  String get getPhone => '+${country.dialCode}${phoneTextController.text}';
+
   @override
   void initState() {
     cubit = context.read<RegisterCubit>();
@@ -55,10 +57,12 @@ class _LoginPageState extends State<LoginPage> {
         ],
       ),
       body: BlocListener<RegisterCubit, RegisterState>(
-        listenWhen: (context, state) => state.stateStatus != state.stateStatus,
+        listenWhen: (previous, current) => previous.stateStatus != current.stateStatus,
         listener: (context, state) {
           if (state.stateStatus == AppStateStatus.success) {
-            context.navigate.pushNamed(VerifyOtpPage.route, state.data?.key);
+            context.navigate.pushNamed(VerifyOtpPage.route, VerifyOtpPara(key: state.data!.key, phone: getPhone));
+          } else if (state.stateStatus == AppStateStatus.failure) {
+            app.snackBar.show(state.message!);
           }
         },
         child: AppListViewBuilder(
@@ -80,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 width: context.mediaQuery.size.width,
                 child: FilledButton(
-                  onPressed: () => cubit.request(data: RegisterRequest(phoneNumber: '+${country.dialCode}${phoneTextController.text}')),
+                  onPressed: () => cubit.request(data: RegisterRequest(phoneNumber: getPhone)),
                   child: Text(T.getVerificationCode.r),
                 ),
               ),
@@ -96,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 width: context.mediaQuery.size.width,
                 child: FilledButton(
-                  onPressed: () => cubit.request(data: RegisterRequest(phoneNumber: '+${country.dialCode}${phoneTextController.text}')),
+                  onPressed: () => cubit.request(data: RegisterRequest(phoneNumber: getPhone)),
                   child: Text(T.login.r),
                 ),
               ),

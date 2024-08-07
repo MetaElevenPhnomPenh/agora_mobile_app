@@ -3,6 +3,7 @@ import 'package:agora/export.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
+  static const String route = '/HomePage';
 
   @override
   State<HomePage> createState() => _HomePageState();

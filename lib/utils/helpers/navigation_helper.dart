@@ -63,17 +63,16 @@ class NavigationHelper {
     return Navigator.pushReplacementNamed(getContext, route, arguments: arg);
   }
 
-  Future pushNamedAndRemoveUntil(
-    String route,
-    String? predicate, {
-    Object? arguments,
-  }) {
+  Future pushNamedAndRemoveUntil(String route, [arg, String? predicate]) {
     log('pushAndRemoveUntil to $route ::::::::::', name: 'NavigationHelper');
     return Navigator.pushNamedAndRemoveUntil(
       getContext,
       route,
-      (route) => route.settings.name == predicate,
-      arguments: arguments,
+      (Route<dynamic> route) {
+        if (predicate == null) return false;
+        return route.settings.name == predicate;
+      },
+      arguments: arg,
     );
   }
 

@@ -32,10 +32,11 @@ class SnackBarHelper {
           ),
           child: Row(
             children: [
-              SvgPicture.asset(
+              const Icon(Icons.check),
+              /* SvgPicture.asset(
                 _getIcon(type),
                 colorFilter: ColorFilter.mode(_getIconColor(type), BlendMode.srcIn),
-              ),
+              ),*/
               const SizedBox(width: 16),
               Expanded(
                 child: Column(

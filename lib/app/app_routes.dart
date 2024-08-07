@@ -3,6 +3,8 @@ import 'package:agora/export.dart';
 class AppRoutes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case HomePage.route:
+        return _buildRoute(const HomePage(), settings);
       case LoginPage.route:
         return _buildRoute(const LoginPage(), settings);
       case ProductDetailPage.route:
