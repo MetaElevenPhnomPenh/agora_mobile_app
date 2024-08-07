@@ -534,12 +534,12 @@ InputDecorationTheme get _inputDecoration {
 }
 
 CardTheme get _cardTheme {
-  return CardTheme(
+  return const CardTheme(
     color: Colors.white,
     margin: EdgeInsets.zero,
-    elevation: 15,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-    shadowColor: Colors.black.withOpacity(0.4),
+    elevation: 0.0,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+    shadowColor: AppColor.whiteColor,
     surfaceTintColor: AppColor.whiteColor,
   );
 }

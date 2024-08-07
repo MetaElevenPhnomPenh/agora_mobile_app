@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:agora/export.dart';
+import 'package:flutter/foundation.dart';
 
 class BaseResponseEntityMap {
   final BaseResponseMeta meta;
@@ -63,7 +64,6 @@ class BaseResponsePaginateData<K> {
 
 class BaseResponse<K> {
   String message;
-  bool success;
   List<K>? list;
   K? data;
   BaseResponseMeta meta;
@@ -72,18 +72,17 @@ class BaseResponse<K> {
     required this.message,
     required this.data,
     required this.list,
-    required this.success,
     required this.meta,
   });
 
   factory BaseResponse.fromMap(Response<dynamic> response, K Function(Map<String, dynamic>) create) {
     try {
+      if (kDebugMode) {}
       final json = AppHttpHelper.response(response);
       final _json = json["data"];
       final List<K>? itemList = _json != null && _json is List ? List<K>.from(_json.map((x) => create(x))) : null;
       final K? itemMap = _json != null && _json is Map ? create(_json as Map<String, dynamic>) : null;
       return BaseResponse<K>(
-        success: true,
         message: json["message"].toString().toAppString()!,
         data: itemMap,
         list: itemList,

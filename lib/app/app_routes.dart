@@ -5,8 +5,6 @@ class AppRoutes {
     switch (settings.name) {
       case LoginPage.route:
         return _buildRoute(const LoginPage(), settings);
-      case LoginPasswordPage.route:
-        return _buildRoute(const LoginPasswordPage(), settings);
       case ProductDetailPage.route:
         return _buildRoute(const ProductDetailPage(), settings);
       case CountryPhonePage.route:
@@ -19,6 +17,8 @@ class AppRoutes {
         return _buildRoute(const UserAgreementPage(), settings);
       case AppImagePreview.route:
         return _buildRoute(const AppImagePreview(), settings);
+      case VerifyOtpPage.route:
+        return _buildRoute(const VerifyOtpPage(), settings);
       default:
         return _buildRoute(
           Scaffold(

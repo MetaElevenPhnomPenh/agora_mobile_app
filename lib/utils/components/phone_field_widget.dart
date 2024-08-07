@@ -4,11 +4,13 @@ import 'package:intl_phone_field/countries.dart';
 class PhoneFieldWidget extends StatelessWidget {
   final ValueChanged<Country>? onChanged;
   final Country? country;
+  final TextEditingController? controller;
 
   const PhoneFieldWidget({
     super.key,
     this.onChanged,
     this.country,
+    this.controller,
   });
 
   @override
@@ -16,6 +18,7 @@ class PhoneFieldWidget extends StatelessWidget {
     return Stack(
       children: [
         TextFieldWidget(
+          controller: controller,
           hintText: T.phoneNumber.r,
           keyboardType: TextInputType.number,
           prefixIcon: const SizedBox(

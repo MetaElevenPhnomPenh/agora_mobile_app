@@ -35,11 +35,11 @@ class AppHttpHelper {
     if (statusCode != null) {
       if (statusCode >= 200 && statusCode <= 299) {
         //appEventBus.fire(const EventBusUnderMaintenance(false));
-        if (checkKeyMap(result, 'message')) {
+        return result;
+        /*if (checkKeyMap(result, 'message')) {
           if (result['message'] == 'success') {
-            return result;
           }
-        }
+        }*/
       }
     }
     throw AppHttpError(status: AppHttpStatus.error, message: checkKeyMap(result, 'message') ? result['message'] : T.somethingUnexpectedWentWrong.r);

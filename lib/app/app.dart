@@ -19,7 +19,7 @@ class App extends StatelessWidget {
         darkTheme: customDarkTheme,
         navigatorKey: globalKey,
         onGenerateRoute: AppRoutes.generateRoute,
-        home: const MePage(),
+        home: const HomePage(),
       ),
     );
   }

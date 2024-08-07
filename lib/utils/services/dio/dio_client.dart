@@ -13,11 +13,16 @@ class DioClient {
 
   //header
   static Dio getInstance() {
-    Dio httpClient = Dio(BaseOptions(receiveTimeout: 5000, sendTimeout: null, baseUrl: "https://jsonplaceholder.typicode.com",headers: {
-      "Content-Type": "application/json",
-      'Accept': '*/*',
-      'Access-Control-Allow-Origin': '*',
-    }));
+    Dio httpClient = Dio(BaseOptions(
+      receiveTimeout: 5000,
+      sendTimeout: null,
+      baseUrl: AppEnv.baseUrl,
+      headers: {
+        "Content-Type": "application/json",
+        'Accept': '*/*',
+        'Access-Control-Allow-Origin': '*',
+      },
+    ));
 
     _dio = httpClient;
     return httpClient;
@@ -37,7 +42,7 @@ class DioClient {
         onSendProgress: onSendProgress,
         cancelToken: cancelToken,
       );
-      return BaseResponse.fromMap(response, (data) => deserialize<K>(data['data']));
+      return BaseResponse.fromMap(response, (data) => deserialize<K>(data));
     } catch (e) {
       if (kDebugMode) {}
       throw CustomException(e).toString();
@@ -57,7 +62,7 @@ class DioClient {
         queryParameters: queryParameters,
       );
       log('Response: $response', name: 'GET');
-      return BaseResponse.fromMap(response, (data) => deserialize<K>(data['data']));
+      return BaseResponse.fromMap(response, (data) => deserialize<K>(data));
     } catch (e) {
       if (kDebugMode) {}
       throw CustomException(e).toString();
@@ -72,7 +77,7 @@ class DioClient {
       Dio dio = DioClient.instance;
       var response = await dio.put(path, data: request);
       log('Response: $response', name: 'PUT');
-      return BaseResponse.fromMap(response, (data) => deserialize<K>(data['data']));
+      return BaseResponse.fromMap(response, (data) => deserialize<K>(data));
     } catch (e) {
       if (kDebugMode) {}
       throw CustomException(e).toString();
@@ -87,7 +92,7 @@ class DioClient {
       Dio dio = DioClient.instance;
       var response = await dio.delete(path, data: request);
       log('Response: $response', name: 'DELETE');
-      return BaseResponse.fromMap(response, (data) => deserialize<K>(data['data']));
+      return BaseResponse.fromMap(response, (data) => deserialize<K>(data));
     } catch (e) {
       if (kDebugMode) {}
       throw CustomException(e).toString();
