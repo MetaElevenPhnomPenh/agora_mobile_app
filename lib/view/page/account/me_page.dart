@@ -4,8 +4,9 @@ import 'package:agora/export.dart';
 
 class MePage extends StatefulWidget {
   static const String route = '/MePage';
+  final GestureTapCallback onDrawer;
 
-  const MePage({Key? key}) : super(key: key);
+  const MePage({Key? key, required this.onDrawer}) : super(key: key);
 
   @override
   State<MePage> createState() => _MePageState();
@@ -23,9 +24,10 @@ class _MePageState extends State<MePage> {
             paddingAll: 8,
             child: Icon(Icons.headphones),
           ),
-          const AppGestureDetector(
+          AppGestureDetector(
             paddingAll: 8,
-            child: Icon(Icons.menu),
+            onTap: () => widget.onDrawer.call(),
+            child: const Icon(Icons.menu),
           ),
           8.sw(),
         ],
@@ -349,12 +351,25 @@ class _MePageState extends State<MePage> {
             child: Container(
               margin: 13.p(),
               width: context.mediaQuery.size.width,
-              child: Row(
+              child: Column(
                 children: [
-                  iconWidget(title: 'Star Forest'),
-                  iconWidget(title: 'Receive Coupon'),
-                  iconWidget(title: 'Lottery'),
-                  iconWidget(title: 'Get a price'),
+                  Row(
+                    children: [
+                      iconWidget(title: 'Star Forest'),
+                      iconWidget(title: 'Receive Coupon'),
+                      iconWidget(title: 'Lottery'),
+                      iconWidget(title: 'Get a price'),
+                    ],
+                  ),
+                  13.sh(),
+                  Row(
+                    children: [
+                      iconWidget(title: 'High Price'),
+                      iconWidget(title: 'Service'),
+                      iconWidget(title: 'Shoe and clothing'),
+                      iconWidget(title: 'Student Area'),
+                    ],
+                  ),
                 ],
               ),
             ),
