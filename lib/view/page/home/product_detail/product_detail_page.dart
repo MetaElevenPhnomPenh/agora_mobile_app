@@ -1,4 +1,6 @@
+import 'package:agora/data/_.dart';
 import 'package:agora/export.dart';
+import 'package:agora/view/page/home/product_detail/favorite_widget.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
@@ -485,7 +487,25 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                       Icons.favorite_border,
                       size: 20,
                     ),
-                    "Favorite",
+                    "I want",
+                    onTap: () {
+                      showModalBottomSheet<void>(
+                        context: context,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(16),
+                          ),
+                        ),
+                        isScrollControlled: true,
+                        builder: (BuildContext context) {
+                          return const BottomSheetTemplateWidget(
+                            title: "Title here",
+                            leadingTitle: Icon(Icons.flutter_dash),
+                            child: FavoriteWidget(),
+                          );
+                        },
+                      );
+                    },
                   ),
                   const SizedBox(width: 6),
                   _item(
@@ -493,7 +513,8 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                       Icons.check_circle_outline_rounded,
                       size: 20,
                     ),
-                    "Save",
+                    "I have",
+                    onTap: () {},
                   ),
                   const SizedBox(width: 6),
                   _item(
@@ -501,7 +522,8 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                       Icons.headset_mic_outlined,
                       size: 20,
                     ),
-                    "Like",
+                    "Help",
+                    onTap: () {},
                   ),
                   const SizedBox(width: 12),
                   SizedBox(
@@ -510,7 +532,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                       onPressed: () {},
                       child: Text(
                         "Want to buy",
-                        style: _textStyle,
+                        style: _textStyleBtn,
                       ),
                     ),
                   ),
@@ -522,7 +544,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                         onPressed: () {},
                         child: Text(
                           "Buy it now",
-                          style: _textStyle,
+                          style: _textStyleBtn,
                         ),
                       ),
                     ),
@@ -536,27 +558,36 @@ class _ProductDetailPageState extends State<ProductDetailPage>
     );
   }
 
-  Widget _item(Icon icon, String text) {
-    return Container(
-      constraints: const BoxConstraints(
-        minWidth: 30,
-      ),
-      height: 35,
-      child: Column(
-        children: [
-          icon,
-          Text(
-            text,
-            style: _textStyle,
-          ),
-        ],
+  Widget _item(Icon icon, String text, {required VoidCallback onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        constraints: const BoxConstraints(
+          minWidth: 30,
+        ),
+        height: 35,
+        child: Column(
+          children: [
+            icon,
+            Text(
+              text,
+              style: _textStyle,
+            ),
+          ],
+        ),
       ),
     );
   }
 
   final TextStyle _textStyle = const TextStyle(
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w400,
     fontSize: 10,
+    color: Colors.grey,
+  );
+
+  final TextStyle _textStyleBtn = const TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 12,
   );
 
   Row _appBarRow() {
