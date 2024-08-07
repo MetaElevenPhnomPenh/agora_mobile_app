@@ -1,6 +1,6 @@
 import 'package:agora/data/_.dart';
+import 'package:agora/data/enums/_.dart';
 import 'package:agora/export.dart';
-import 'package:agora/view/page/home/product_detail/favorite_widget.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
@@ -514,7 +514,23 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                       size: 20,
                     ),
                     "I have",
-                    onTap: () {},
+                    onTap: () {
+                      showModalBottomSheet<void>(
+                        context: context,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(16),
+                          ),
+                        ),
+                        isScrollControlled: true,
+                        builder: (BuildContext context) {
+                          return const BottomSheetTemplateWidget(
+                            title: "Title here",
+                            child: IHaveWidget(),
+                          );
+                        },
+                      );
+                    },
                   ),
                   const SizedBox(width: 6),
                   _item(
@@ -529,7 +545,9 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                   SizedBox(
                     height: 35,
                     child: OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        //
+                      },
                       child: Text(
                         "Want to buy",
                         style: _textStyleBtn,
@@ -541,7 +559,23 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                     child: SizedBox(
                       height: 35,
                       child: FilledButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          showModalBottomSheet<void>(
+                            context: context,
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(16),
+                              ),
+                            ),
+                            isScrollControlled: true,
+                            builder: (BuildContext context) {
+                              return const BottomSheetTemplateWidget(
+                                titleWidget: BuyNowHeaderWidget(),
+                                child: BuyNowBodyWidget(),
+                              );
+                            },
+                          );
+                        },
                         child: Text(
                           "Buy it now",
                           style: _textStyleBtn,
