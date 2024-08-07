@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      endDrawer: drawer(),
+      endDrawer: drawerWidget(),
       body: _tabViews[_currentTappedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentTappedIndex,
@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget drawer() {
+  Widget drawerWidget() {
     return Drawer(
       child: SafeArea(
         child: Container(
@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
               ),
               SizedBox(
                 width: context.mediaQuery.size.width,
-                child: OutlinedButton(onPressed: () {}, child: Text(T.login.r)),
+                child: OutlinedButton(onPressed: () => context.navigate.pushNamed(LoginPage.route), child: Text(T.login.r)),
               ),
             ],
           ),
