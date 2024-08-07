@@ -2,7 +2,7 @@ import 'package:agora/export.dart';
 
 const _defaultFontHeight = 1.35;
 const _fontColor = Colors.black;
-const _fontFamily = "Inter";
+const _fontFamily = "Roboto"; //"Inter";
 
 final ThemeData customLightTheme = ThemeData(
   useMaterial3: false,

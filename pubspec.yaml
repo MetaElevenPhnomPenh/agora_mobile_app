@@ -47,3 +47,26 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/roboto/RobotoCondensed-Thin-w100.ttf
+          weight: 100
+        - asset: assets/fonts/roboto/RobotoCondensed-ExtraLight-w200.ttf
+          weight: 200
+        - asset: assets/fonts/roboto/RobotoCondensed-Light-w300.ttf
+          weight: 300
+        - asset: assets/fonts/roboto/RobotoCondensed-Regular-w400.ttf
+          weight: 400
+        - asset: assets/fonts/roboto/RobotoCondensed-Medium-w500.ttf
+          weight: 500
+        - asset: assets/fonts/roboto/RobotoCondensed-SemiBold-w600.ttf
+          weight: 600
+        - asset: assets/fonts/roboto/RobotoCondensed-Bold-w700.ttf
+          weight: 700
+        - asset: assets/fonts/roboto/RobotoCondensed-ExtraBold-w800.ttf
+          weight: 800
+        - asset: assets/fonts/roboto/RobotoCondensed-Black-w900.ttf
+          weight: 900
+
