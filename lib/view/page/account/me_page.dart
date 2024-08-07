@@ -50,7 +50,7 @@ class _MePageState extends State<MePage> {
           iconWidget ??
               const Icon(
                 Icons.add_chart,
-                size: 30,
+                size: 28,
               ),
           2.sh(),
           Center(
@@ -80,7 +80,7 @@ class _MePageState extends State<MePage> {
           Expanded(
             child: Text(
               title,
-              style: context.textTheme.labelMedium,
+              style: context.textTheme.labelLarge,
             ),
           ),
           Text(
@@ -155,8 +155,8 @@ class _MePageState extends State<MePage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Log in OR Register', style: context.textTheme.headlineSmall),
-                  Text('Log in to get more surprises', style: context.textTheme.bodySmall),
+                  Text('Login OR Register', style: context.textTheme.headlineSmall),
+                  Text('Login to get more surprises', style: context.textTheme.bodySmall),
                 ],
               ),
             ),

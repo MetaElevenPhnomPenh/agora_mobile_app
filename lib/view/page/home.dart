@@ -1,4 +1,5 @@
 import 'package:agora/data/_.dart';
+import 'package:agora/data/enums/enum.dart';
 import 'package:agora/export.dart';
 
 class HomePage extends StatefulWidget {
@@ -86,7 +87,10 @@ class _HomePageState extends State<HomePage> {
                     const Divider(height: 0.5),
                     menuWidget(title: 'Protection'),
                     menuWidget(title: 'App Permissions'),
-                    menuWidget(title: 'Privacy Policy'),
+                    menuWidget(
+                      title: 'Privacy Policy',
+                      onTap: () => context.navigate.pushNamed(PrivacyPolicyPage.route),
+                    ),
                   ].separator((i) => 24.sh()),
                 ),
               ),
@@ -101,18 +105,21 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget menuWidget({required String title}) {
-    return Row(
-      children: [
-        Expanded(
-          child: Text(title, style: context.textTheme.bodyMedium),
-        ),
-        const Icon(
-          Icons.arrow_forward_ios_outlined,
-          size: 14,
-          color: AppColor.greyLightI,
-        ),
-      ],
+  Widget menuWidget({required String title, GestureTapCallback? onTap}) {
+    return InkWell(
+      onTap: onTap,
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(title, style: context.textTheme.bodyMedium),
+          ),
+          const Icon(
+            Icons.arrow_forward_ios_outlined,
+            size: 14,
+            color: AppColor.greyLightI,
+          ),
+        ],
+      ),
     );
   }
 }
