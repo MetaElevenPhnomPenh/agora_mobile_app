@@ -31,28 +31,28 @@ class _HomePageState extends State<HomePage> {
             });
           }
         },
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            label: 'Home',
-            icon: Icon(
+            label: T.home.r,
+            icon: const Icon(
               Icons.home,
             ),
           ),
           BottomNavigationBarItem(
-            label: 'Buy',
-            icon: Icon(
+            label: T.buy.r,
+            icon: const Icon(
               Icons.email,
             ),
           ),
           BottomNavigationBarItem(
-            label: 'Explore',
-            icon: Icon(
+            label: T.explore.r,
+            icon: const Icon(
               Icons.star,
             ),
           ),
           BottomNavigationBarItem(
-            label: 'Me',
-            icon: Icon(
+            label: T.me.r,
+            icon: const Icon(
               Icons.person,
             ),
           ),

@@ -175,6 +175,27 @@ class T {
     km: 'otp ចូល',
   );
 
+  static const buy = _(
+    en: 'Buy',
+    zh: '买',
+    vi: 'Mua',
+    km: 'តិញ',
+  );
+
+  static const explore = _(
+    en: 'Explore',
+    zh: '探索',
+    vi: 'Khám phá',
+    km: 'រុករក',
+  );
+
+  static const me = _(
+    en: 'Me',
+    zh: '我',
+    vi: 'Tôi',
+    km: 'ខុ្ញ',
+  );
+
   static I18n t(String text) {
     if (_map.containsKey(text)) {
       return _map[text]!;

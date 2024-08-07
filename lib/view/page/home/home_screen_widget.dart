@@ -164,9 +164,26 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget>
                                   const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 5,
                               ),
+                              itemBuilder: (_, index) => InkWell(
+                                onTap: () {
+                                  app.navigate.pushNamed(
+                                    ProductsListedByCategoryPage.route,
+                                  );
+                                },
+                                child: const BrandCardWidget(),
+                              ),
+                              itemCount: 10,
+                            ),
+                            GridView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 4,
+                              ),
                               itemBuilder: (_, index) =>
                                   const BrandCardWidget(),
-                              itemCount: 10,
+                              itemCount: 4,
                             ),
                             GridView.builder(
                               shrinkWrap: true,
