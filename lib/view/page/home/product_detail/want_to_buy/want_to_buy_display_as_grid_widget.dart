@@ -71,7 +71,7 @@ class WantToBuyDisplayAsGridWidget extends StatelessWidget {
                 onPressed: () {
                   //
                 },
-                child: Text("Confirm"),
+                child: const Text("Confirm"),
               ),
             ),
           ),

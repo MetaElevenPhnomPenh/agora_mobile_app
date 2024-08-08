@@ -691,42 +691,99 @@ class _ProductDetailPageState extends State<ProductDetailPage>
     return Row(
       children: [
         const Spacer(),
-        Container(
-          width: 35,
-          height: 35,
-          decoration: const BoxDecoration(
-            color: AppColor.lightGreyColor,
-            shape: BoxShape.circle,
-          ),
-          child: const Center(
-            child: Icon(Icons.compare_arrows),
-          ),
-        ),
-        const SizedBox(width: 6),
-        Container(
-          width: 35,
-          height: 35,
-          decoration: const BoxDecoration(
-            color: AppColor.lightGreyColor,
-            shape: BoxShape.circle,
-          ),
-          child: const Center(
-            child: Icon(
-              Icons.wechat,
-              color: Colors.green,
+        GestureDetector(
+          onTap: () {
+            showModalBottomSheet<void>(
+              context: context,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(16),
+                ),
+              ),
+              isScrollControlled: true,
+              builder: (BuildContext context) {
+                return const BottomSheetTemplateWidget(
+                  title: "Title here",
+                  child: SizedBox(),
+                );
+              },
+            );
+          },
+          child: Container(
+            width: 35,
+            height: 35,
+            decoration: const BoxDecoration(
+              color: AppColor.lightGreyColor,
+              shape: BoxShape.circle,
+            ),
+            child: const Center(
+              child: Icon(Icons.compare_arrows),
             ),
           ),
         ),
         const SizedBox(width: 6),
-        Container(
-          width: 35,
-          height: 35,
-          decoration: const BoxDecoration(
-            color: AppColor.lightGreyColor,
-            shape: BoxShape.circle,
+        GestureDetector(
+          onTap: () {
+            showModalBottomSheet<void>(
+              context: context,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(16),
+                ),
+              ),
+              isScrollControlled: true,
+              builder: (BuildContext context) {
+                return const BottomSheetTemplateWidget(
+                  title: "Title here",
+                  child: SizedBox(),
+                );
+              },
+            );
+          },
+          child: Container(
+            width: 35,
+            height: 35,
+            decoration: const BoxDecoration(
+              color: AppColor.lightGreyColor,
+              shape: BoxShape.circle,
+            ),
+            child: const Center(
+              child: Icon(
+                Icons.wechat,
+                color: Colors.green,
+              ),
+            ),
           ),
-          child: const Center(
-            child: Icon(Icons.more_horiz),
+        ),
+        const SizedBox(width: 6),
+        GestureDetector(
+          onTap: () {
+            showModalBottomSheet<void>(
+              context: context,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(16),
+                ),
+              ),
+              isScrollControlled: true,
+              builder: (BuildContext context) {
+                return const BottomSheetTemplateWidget(
+                  title: "Title here",
+                  child: SizedBox(),
+                );
+              },
+            );
+          },
+          child: Container(
+            width: 35,
+            height: 35,
+            decoration: const BoxDecoration(
+              color: AppColor.lightGreyColor,
+              shape: BoxShape.circle,
+            ),
+            child: const Center(
+              child: Icon(Icons.more_horiz),
+            ),
           ),
         ),
       ],
