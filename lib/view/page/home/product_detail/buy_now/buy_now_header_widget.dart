@@ -1,4 +1,5 @@
 import 'package:agora/export.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BuyNowHeaderWidget extends StatelessWidget {
   const BuyNowHeaderWidget({super.key});
@@ -101,7 +102,8 @@ class BuyNowHeaderWidget extends StatelessWidget {
                           height: 30,
                           child: Center(
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () =>
+                                  context.read<OrderCounterCubit>().decrement(),
                               child: const Icon(
                                 Icons.remove,
                               ),
@@ -109,13 +111,17 @@ class BuyNowHeaderWidget extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 2),
-                        Container(
-                          color: AppColor.grey6Color,
-                          width: 30,
-                          height: 30,
-                          child: const Center(
-                            child: Text("2"),
-                          ),
+                        BlocBuilder<OrderCounterCubit, OrderCounterState>(
+                          builder: (context, state) {
+                            return Container(
+                              color: AppColor.grey6Color,
+                              width: 30,
+                              height: 30,
+                              child: Center(
+                                child: Text("${state.orderAmount}"),
+                              ),
+                            );
+                          },
                         ),
                         const SizedBox(width: 2),
                         Container(
@@ -124,7 +130,8 @@ class BuyNowHeaderWidget extends StatelessWidget {
                           height: 30,
                           child: Center(
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () =>
+                                  context.read<OrderCounterCubit>().increment(),
                               child: const Icon(
                                 Icons.add,
                               ),

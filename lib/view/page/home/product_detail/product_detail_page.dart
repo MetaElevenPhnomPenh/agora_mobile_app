@@ -1,6 +1,7 @@
 import 'package:agora/data/_.dart';
 import 'package:agora/data/enums/_.dart';
 import 'package:agora/export.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
@@ -563,6 +564,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                       height: 35,
                       child: FilledButton(
                         onPressed: () {
+                          context.read<OrderCounterCubit>().reset();
                           showModalBottomSheet<void>(
                             context: context,
                             shape: const RoundedRectangleBorder(

@@ -1,4 +1,5 @@
 import 'package:agora/export.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BuyNowBodyWidget extends StatelessWidget {
   const BuyNowBodyWidget({super.key});
@@ -43,41 +44,50 @@ class BuyNowBodyWidget extends StatelessWidget {
                       mainAxisSpacing: 8,
                       childAspectRatio: .9,
                     ),
-                    itemBuilder: (_, index) => Container(
-                      decoration: BoxDecoration(
-                        color: AppColor.containerBackgroundBlack,
-                        border: index != 0
-                            ? null
-                            : Border.all(
-                                width: 1,
-                                color: AppColor.blackColor,
-                              ),
-                      ),
-                      padding: const EdgeInsets.all(6),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              width: MediaQuery.of(context).size.width,
-                              padding: const EdgeInsets.all(8),
-                              child: Image.network(
-                                "https://target.scene7.com/is/image/Target/GUEST_4b405ae1-a4d6-4c57-b1f2-fb170b9c689c?wid=488&hei=488&fmt=pjpeg",
-                              ),
-                            ),
+                    itemBuilder: (_, index) =>
+                        BlocBuilder<OrderCounterCubit, OrderCounterState>(
+                            builder: (context, state) {
+                      return GestureDetector(
+                        onTap: () => context
+                            .read<OrderCounterCubit>()
+                            .selectColor(index),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: AppColor.containerBackgroundBlack,
+                            border: index != state.colorSelected
+                                ? null
+                                : Border.all(
+                                    width: 1,
+                                    color: AppColor.blackColor,
+                                  ),
                           ),
-                          const Text(
-                            "White color",
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontWeight: FontWeight.normal,
-                              fontSize: 12,
-                            ),
+                          padding: const EdgeInsets.all(6),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  padding: const EdgeInsets.all(8),
+                                  child: Image.network(
+                                    "https://target.scene7.com/is/image/Target/GUEST_4b405ae1-a4d6-4c57-b1f2-fb170b9c689c?wid=488&hei=488&fmt=pjpeg",
+                                  ),
+                                ),
+                              ),
+                              const Text(
+                                "White color",
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ),
+                        ),
+                      );
+                    }),
                     itemCount: 6,
                   ),
                   12.sh(),
@@ -95,42 +105,50 @@ class BuyNowBodyWidget extends StatelessWidget {
                       mainAxisSpacing: 8,
                       childAspectRatio: .9,
                     ),
-                    itemBuilder: (_, index) => Container(
-                      decoration: BoxDecoration(
-                        color: AppColor.containerBackgroundBlack,
-                        border: index != 0
-                            ? null
-                            : Border.all(
-                                width: 1,
-                                color: AppColor.blackColor,
+                    itemBuilder: (_, index) =>
+                        BlocBuilder<OrderCounterCubit, OrderCounterState>(
+                            builder: (context, state) {
+                      return GestureDetector(
+                        onTap: () =>
+                            context.read<OrderCounterCubit>().selectSize(index),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: AppColor.containerBackgroundBlack,
+                            border: index != state.sizeSelected
+                                ? null
+                                : Border.all(
+                                    width: 1,
+                                    color: AppColor.blackColor,
+                                  ),
+                          ),
+                          padding: const EdgeInsets.all(6),
+                          child: const Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                "M",
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 19,
+                                ),
                               ),
-                      ),
-                      padding: const EdgeInsets.all(6),
-                      child: const Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            "M",
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 19,
-                            ),
+                              Text(
+                                "\$133",
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
                           ),
-                          Text(
-                            "\$133",
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontWeight: FontWeight.normal,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                        ),
+                      );
+                    }),
                     itemCount: 4,
                   ),
                 ],
@@ -140,9 +158,12 @@ class BuyNowBodyWidget extends StatelessWidget {
           SafeArea(
             child: Container(
               margin: 12.px(),
-              height: 70,
+              height: 55,
               width: MediaQuery.of(context).size.width,
-              color: AppColor.primaryButtonColor,
+              decoration: BoxDecoration(
+                color: AppColor.primaryButtonColor,
+                borderRadius: BorderRadius.circular(4),
+              ),
               alignment: Alignment.center,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
