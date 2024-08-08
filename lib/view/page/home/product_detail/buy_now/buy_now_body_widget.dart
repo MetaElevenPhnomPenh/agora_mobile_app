@@ -26,7 +26,7 @@ class BuyNowBodyWidget extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding: 12.px,
+              padding: 12.px(),
               child: ListView(
                 children: [
                   8.sh(),
@@ -157,7 +157,7 @@ class BuyNowBodyWidget extends StatelessWidget {
           ),
           SafeArea(
             child: Container(
-              margin: 12.px,
+              margin: 12.px(),
               height: 55,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(

@@ -17,10 +17,12 @@ extension IntExtension on int {
     return EdgeInsets.only(right: this.toDouble());
   }
 
-  EdgeInsets get px => EdgeInsets.symmetric(horizontal: this.toDouble());
+  EdgeInsets px({double? y})  {
+    return EdgeInsets.symmetric(horizontal: this.toDouble(), vertical: y ?? 0);
+  }
 
-  EdgeInsets py() {
-    return EdgeInsets.symmetric(vertical: this.toDouble());
+  EdgeInsets py({double? x}) {
+    return EdgeInsets.symmetric(vertical: this.toDouble(), horizontal: x ?? 0);
   }
 
   EdgeInsets p({double? l, double? r, double? t, double? b}) {

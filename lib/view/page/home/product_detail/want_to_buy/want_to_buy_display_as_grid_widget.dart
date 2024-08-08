@@ -9,7 +9,7 @@ class WantToBuyDisplayAsGridWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: 12.px,
+      padding: 12.px(),
       child: Column(
         children: [
           12.sh(),
