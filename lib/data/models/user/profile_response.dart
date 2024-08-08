@@ -9,6 +9,7 @@ class ProfileResponse {
   final String id;
   @JsonKey(name: 'is_deleted')
   final bool isDeleted;
+  @JsonKey(name: 'is_verify')
   final bool isVerify;
   @JsonKey(name: 'phone_number')
   final String phoneNumber;
