@@ -608,9 +608,8 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                   SizedBox(
                     height: 35,
                     child: OutlinedButton(
-                      onPressed: () {
-                        //
-                      },
+                      onPressed: () =>
+                          app.navigate.pushNamed(WantToBuyPage.route),
                       child: Text(
                         "Want to buy",
                         style: _textStyleBtn,
