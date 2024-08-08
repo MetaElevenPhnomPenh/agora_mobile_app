@@ -381,11 +381,14 @@ class _ProductDetailPageState extends State<ProductDetailPage>
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (_, index) => Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child: Image.network(
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR27TILN5re2nFelPedAHJUdDp68r7bPbXYBg&s",
-                  fit: BoxFit.cover,
+              itemBuilder: (_, index) => InkWell(
+                onTap: () => app.navigate.pushNamed(AppImagePreview.route),
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: Image.network(
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR27TILN5re2nFelPedAHJUdDp68r7bPbXYBg&s",
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               itemCount: 3,
