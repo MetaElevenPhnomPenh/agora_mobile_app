@@ -18,8 +18,6 @@ dependencies:
   path_provider: ^2.1.2
   path: ^1.8.3
   shimmer: ^3.0.0
-  flutter_riverpod:
-    path: plugins/flutter_riverpod
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   connectivity_plus: ^6.0.4
