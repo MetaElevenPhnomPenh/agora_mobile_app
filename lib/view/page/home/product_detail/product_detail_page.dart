@@ -221,7 +221,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
               children: [
                 Text(
                   "Recent purchased(3)",
-                  style: context.textTheme.labelSmall,
+                  style: context.textTheme.displaySmall,
                 ),
                 const Spacer(),
                 Text(
@@ -279,7 +279,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                 children: [
                   Text(
                     "Outfit selection(3)",
-                    style: context.textTheme.labelSmall,
+                    style: context.textTheme.displaySmall,
                   ),
                   const Spacer(),
                   Text(
@@ -364,6 +364,58 @@ class _ProductDetailPageState extends State<ProductDetailPage>
       ),
       const SizedBox(height: 8),
 
+      /// Recommendation
+      Container(
+        color: AppColor.whiteColor,
+        margin: const EdgeInsets.symmetric(horizontal: 12),
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Text(
+                  "Related recommendation",
+                  style: context.textTheme.displaySmall,
+                ),
+                const Spacer(),
+                InkWell(
+                  onTap: () => app.navigate
+                      .pushNamed(ProductsListedByCategoryPage.route),
+                  child: Row(
+                    children: [
+                      Text(
+                        "View all",
+                        style: context.textTheme.labelSmall,
+                      ),
+                      const Icon(
+                        Icons.navigate_next,
+                        size: 17,
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+            12.sh(),
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                mainAxisSpacing: 8,
+                crossAxisSpacing: 8,
+                childAspectRatio: .9,
+              ),
+              itemBuilder: (_, index) => const ProductCardSmallWidget(),
+              itemCount: 6,
+            ),
+          ],
+        ),
+      ),
+      const SizedBox(height: 8),
+
       /// Display related images
       Container(
         color: AppColor.whiteColor,
@@ -375,7 +427,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
               padding: const EdgeInsets.all(12),
               child: Text(
                 "Commodity display",
-                style: context.textTheme.labelSmall,
+                style: context.textTheme.displaySmall,
               ),
             ),
             const SizedBox(height: 4),
@@ -400,6 +452,13 @@ class _ProductDetailPageState extends State<ProductDetailPage>
       const SizedBox(height: 8),
 
       /// Related or similar products (index = 15)
+      Center(
+        child: Text(
+          "Products",
+          style: context.textTheme.displaySmall,
+        ),
+      ),
+      12.sh(),
       GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
