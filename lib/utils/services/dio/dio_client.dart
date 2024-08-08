@@ -1,8 +1,10 @@
 import "dart:async";
 import "dart:developer";
+import "dart:io";
 import "package:dio/dio.dart";
 import 'package:agora/export.dart';
 import "package:flutter/foundation.dart";
+import 'package:path/path.dart' as path;
 
 class DioClient {
   DioClient._();
@@ -29,16 +31,18 @@ class DioClient {
   }
 
   static Future<BaseResponse<K>> postMethod<K>({
-    dynamic request,
+    Map<String, dynamic>? request,
     required String path,
     void Function(int, int)? onSendProgress,
     CancelToken? cancelToken,
+    Map<String, File>? file,
+    Map<String, List<File>>? files,
   }) async {
     try {
       Dio dio = DioClient.instance;
       var response = await dio.post(
         path,
-        data: request,
+        data: await _formData(request: request, file: file, files: files),
         onSendProgress: onSendProgress,
         cancelToken: cancelToken,
       );
@@ -70,12 +74,17 @@ class DioClient {
   }
 
   static Future<BaseResponse<K>> putMethod<K>({
-    dynamic request,
+    Map<String, dynamic>? request,
     required String path,
+    Map<String, File>? file,
+    Map<String, List<File>>? files,
   }) async {
     try {
       Dio dio = DioClient.instance;
-      var response = await dio.put(path, data: request);
+      var response = await dio.put(
+        path,
+        data: await _formData(request: request, file: file, files: files),
+      );
       log('Response: $response', name: 'PUT');
       return BaseResponse.fromMap(response, (data) => deserialize<K>(data));
     } catch (e) {
@@ -96,6 +105,45 @@ class DioClient {
     } catch (e) {
       if (kDebugMode) {}
       throw CustomException(e).toString();
+    }
+  }
+
+  static Future<dynamic> _formData({
+    Map<String, dynamic>? request,
+    Map<String, File>? file,
+    Map<String, List<File>>? files,
+  }) async {
+    if ((file?.isEmpty ?? true) && (files?.isEmpty ?? true)) {
+      return request;
+    }
+
+    /// Single File :::::::::::::::::::::::::::::::
+    Map<String, dynamic> fromFile = {};
+    if (file?.isNotEmpty ?? false) {
+      for (var v in file!.entries) {
+        fromFile[v.key] = await MultipartFile.fromFile(v.value.path, filename: path.basename(v.value.path));
+      }
+      if (request == null) {
+        return {...fromFile};
+      } else {
+        return {...fromFile, ...request};
+      }
+    }
+
+    /// Multiple Files :::::::::::::::::::::::::::::::
+    if (files?.isNotEmpty ?? false) {
+      for (var v in files!.entries) {
+        List<MultipartFile> fromFiles = [];
+        for (var e in v.value) {
+          fromFiles.add(await MultipartFile.fromFile(e.path, filename: path.basename(e.path)));
+        }
+        fromFile[v.key] = fromFiles;
+      }
+      if (request == null) {
+        return {...fromFile};
+      } else {
+        return {...fromFile, ...request};
+      }
     }
   }
 }

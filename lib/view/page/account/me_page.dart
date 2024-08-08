@@ -175,10 +175,7 @@ class _MePageState extends State<MePage> {
       padding: app.screenPadding,
       decoration: BoxDecoration(
         color: AppColor.greyLightII.lighten(70),
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(10),
-          topRight: Radius.circular(10),
-        ),
+        borderRadius: 10.rt(),
       ),
       child: Column(
         children: [
