@@ -10,9 +10,15 @@ class AppBlocsProvider extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<RegisterCubit>(create: (context) => RegisterCubit(Dependency.authRepository)),
-        BlocProvider<VerifyOtpCubit>(create: (context) => VerifyOtpCubit(Dependency.authRepository)),
-        BlocProvider<ProfileCubit>(create: (context) => ProfileCubit(Dependency.userRepository)),
+        BlocProvider<RegisterCubit>(
+            create: (context) => RegisterCubit(Dependency.authRepository)),
+        BlocProvider<VerifyOtpCubit>(
+            create: (context) => VerifyOtpCubit(Dependency.authRepository)),
+        BlocProvider<ProfileCubit>(
+            create: (context) => ProfileCubit(Dependency.userRepository)),
+        BlocProvider<OrderCounterCubit>(
+            create: (context) => OrderCounterCubit()),
+
         //BlocProvider<ConfigCubit>(create: (context) => ConfigCubit(DependencyHelper.repository)),
       ],
       child: child,
