@@ -17,9 +17,7 @@ extension DoubleExtension on double {
     return EdgeInsets.only(right: this.toDouble());
   }
 
-  EdgeInsets px() {
-    return EdgeInsets.symmetric(horizontal: this.toDouble());
-  }
+  EdgeInsets get px => EdgeInsets.symmetric(horizontal: this.toDouble());
 
   EdgeInsets py() {
     return EdgeInsets.symmetric(vertical: this.toDouble());

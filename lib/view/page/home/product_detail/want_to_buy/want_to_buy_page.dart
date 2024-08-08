@@ -1,4 +1,5 @@
 import 'package:agora/export.dart';
+import 'package:flutter/cupertino.dart';
 
 class WantToBuyPage extends StatelessWidget {
   const WantToBuyPage({super.key});
@@ -30,11 +31,13 @@ class WantToBuyPage extends StatelessWidget {
         // padding: const EdgeInsets.all(12),
         child: Column(
           children: [
+            12.sh(),
+
             ///
             Expanded(
               child: ListView(
                 children: [
-                  /// Product
+                  /// Products
                   Container(
                     color: AppColor.whiteColor,
                     child: Column(
@@ -110,10 +113,30 @@ class WantToBuyPage extends StatelessWidget {
                                 ),
                               ),
                               8.sw(),
-                              Text(
-                                "Switch",
-                                style: context.textTheme.bodyMedium?.copyWith(
-                                  fontSize: 12,
+                              InkWell(
+                                onTap: () {
+                                  showModalBottomSheet<void>(
+                                    context: context,
+                                    shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.vertical(
+                                        top: Radius.circular(16),
+                                      ),
+                                    ),
+                                    isScrollControlled: true,
+                                    builder: (BuildContext context) {
+                                      return const BottomSheetTemplateWidget(
+                                        titleWidget:
+                                            WantToBuyDisplayHeaderWidget(),
+                                        child: WantToBuyDisplayAsGridWidget(),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Text(
+                                  "Switch",
+                                  style: context.textTheme.bodyMedium?.copyWith(
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ),
                               const Icon(
@@ -156,6 +179,35 @@ class WantToBuyPage extends StatelessWidget {
                           ),
                           keyboardType: TextInputType.number,
                         ),
+                        8.sh(),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Automatic price adjustment 2",
+                                    style: context.textTheme.displaySmall,
+                                  ),
+                                  Text(
+                                    "The automatic price increase is not responded in 3 days, and the small price increase can accelerate the matching.",
+                                    style: context.textTheme.bodyMedium,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            12.sw(),
+                            CupertinoSwitch(
+                              // This bool value toggles the switch.
+                              value: true,
+                              activeColor: CupertinoColors.activeBlue,
+                              onChanged: (bool? value) {
+                                //
+                              },
+                            ),
+                          ],
+                        )
                       ],
                     ),
                   ),
