@@ -86,7 +86,7 @@ unlinked_spec.ds
 # ignore changed from xCode
 **/ios/Podfile.lock
 **/ios/Runner.xcodeproj/project.pbxproj
-pubspec.lock
+**/pubspec.lock
 
 # Coverage
 coverage/
