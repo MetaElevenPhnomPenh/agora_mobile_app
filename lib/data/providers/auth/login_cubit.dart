@@ -1,17 +1,18 @@
+/// login_cubit
 import 'package:agora/export.dart';
 import 'package:flutter/foundation.dart';
 
-typedef RegisterState = BaseBlocState<RegisterResponse>;
+typedef LoginState = BaseBlocState<RegisterResponse>;
 
-class RegisterCubit extends BaseBlocCubit<RegisterResponse> {
+class LoginCubit extends BaseBlocCubit<RegisterResponse> {
   final AuthRepository repository;
 
-  RegisterCubit(this.repository);
+  LoginCubit(this.repository);
 
   @override
   Future<BaseResponse<RegisterResponse>> responseData([String? id, data, subData, bool isNetwork = true]) async {
     if (data is RegisterRequest) {
-      final response = subData == true ? await repository.register(data) : await repository.login(data);
+      final response = await repository.login(data);
       if (kDebugMode) {}
       return response;
     } else {

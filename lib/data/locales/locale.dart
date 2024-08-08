@@ -217,6 +217,20 @@ class T {
     km: 'វិនាទី',
   );
 
+  static const register = _(
+    en: 'Register',
+    zh: '登记',
+    vi: 'Đăng ký',
+    km: 'ការចុហបហ្ជី',
+  );
+
+  static const registerWithMobilePhoneNumber = _(
+    en: 'Register With Mobile Phone Number',
+    zh: '用手机号码注册',
+    vi: 'Đăng ký bằng số điện thoại di động',
+    km: 'ចុះឈ្មោះជាមួយលេខទូរស័ព្ទដៃ',
+  );
+
   static I18n t(String text) {
     if (_map.containsKey(text)) {
       return _map[text]!;

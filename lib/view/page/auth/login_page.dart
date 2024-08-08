@@ -4,6 +4,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/phone_number.dart';
 
+class LoginPagePara {
+  final bool isOtp;
+  final bool isRegister;
+
+  const LoginPagePara({
+    this.isOtp = true,
+    this.isRegister = false,
+  });
+}
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -16,6 +26,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   late final RegisterCubit cubit;
   bool isOtp = true;
+  bool isRegister = false;
   Country country = PhoneNumber.getCountry(app.DEFAULT_COUNTRY_CODE);
   TextEditingController phoneTextController = TextEditingController();
 
@@ -29,9 +40,10 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void onLoadedWidget(BuildContext context) {
-    final arg = context.navigate.getArg<bool>();
-    if (arg is bool) {
-      isOtp = arg;
+    final arg = context.navigate.getArg<LoginPagePara>();
+    if (arg is LoginPagePara) {
+      isOtp = arg.isOtp;
+      isRegister = arg.isOtp;
     }
     setState(() {});
   }
@@ -68,13 +80,14 @@ class _LoginPageState extends State<LoginPage> {
         child: AppListViewBuilder(
           padding: app.screenPadding,
           children: [
-            Text(T.loginWithMobilePhoneNumber.r, style: context.textTheme.displayLarge),
-            Text(
-              T.unregisteredMobilePhoneNumbers.r,
-              style: context.textTheme.bodySmall?.copyWith(
-                color: AppColor.greyLight,
+            Text(isRegister ? T.registerWithMobilePhoneNumber.r : T.loginWithMobilePhoneNumber.r, style: context.textTheme.displayLarge),
+            if (!isRegister)
+              Text(
+                T.unregisteredMobilePhoneNumbers.r,
+                style: context.textTheme.bodySmall?.copyWith(
+                  color: AppColor.greyLight,
+                ),
               ),
-            ),
             PhoneFieldWidget(
               country: country,
               controller: phoneTextController,
@@ -84,14 +97,19 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 width: context.mediaQuery.size.width,
                 child: FilledButton(
-                  onPressed: () => cubit.request(data: RegisterRequest(phoneNumber: getPhone)),
+                  onPressed: () => cubit.request(data: RegisterRequest(phoneNumber: getPhone), subData: isRegister),
                   child: Text(T.getVerificationCode.r),
                 ),
               ),
-              AppGestureDetector(
-                onTap: () => context.navigate.pushNamed(LoginPage.route, false),
+              if (!isRegister)
+                AppGestureDetector(
+                  onTap: () => context.navigate.pushNamed(LoginPage.route, const LoginPagePara(isRegister: true)),
+                  child: Center(child: Text(T.register.r, style: context.textTheme.bodyLarge)),
+                ),
+              /*AppGestureDetector(
+                onTap: () => context.navigate.pushNamed(LoginPage.route, const LoginPagePara(isOtp: false)),
                 child: Center(child: Text(T.passwordLogin.r, style: context.textTheme.bodyLarge)),
-              ),
+              ),*/
             ] else ...[
               TextFieldWidget(
                 hintText: T.passwordLogin.r,
