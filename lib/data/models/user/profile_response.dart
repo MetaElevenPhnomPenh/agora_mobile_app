@@ -1,6 +1,6 @@
 /// profile_response
 import 'package:agora/export.dart';
-
+import 'package:json_annotation/json_annotation.dart';
 class ProfileResponse {
   final String email;
   final String id;

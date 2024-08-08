@@ -20,6 +20,7 @@ dependencies:
   shimmer: ^3.0.0
   flutter_riverpod:
     path: plugins/flutter_riverpod
+  hive: ^2.2.3
   hive_flutter: ^1.1.0
   connectivity_plus: ^6.0.4
   event_bus: ^2.0.0
@@ -42,10 +43,13 @@ dependencies:
 
 dev_dependencies:
   bloc_test: ^9.1.7
+  build_runner: 2.4.11
+  hive_generator: ^2.0.1
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.4
   very_good_analysis: ^6.0.0
+  json_annotation: ^4.9.0
 
 flutter:
   uses-material-design: true
