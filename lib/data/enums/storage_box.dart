@@ -1,0 +1,4 @@
+enum StorageBox {
+  userBox,
+  tokenBox,
+}

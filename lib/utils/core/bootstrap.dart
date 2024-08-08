@@ -1,8 +1,12 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:agora/export.dart';
 import 'package:bloc/bloc.dart';
-part 'bootstrap.gen.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:path_provider/path_provider.dart' as p;
 
+part 'bootstrap.gen.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -24,11 +28,45 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   FlutterError.onError = (details) {
     //log(details.exceptionAsString(), stackTrace: details.stack);
   };
+  // Override HTTPS certificate warning
+  HttpOverrides.global = MyHttpOverrides();
 
-  Bloc.observer = const AppBlocObserver();
+  //Bloc.observer = const AppBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
-  _registerHiveModelAdapters();
+  var widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+
+  setOrientation();
+  // WidgetsBinding.instance.addObserver(RequestAuthOnResume());
+
+  // Starts showing splash and will call to remove() later
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+  // Initial hive
+  await _setUpHive();
+
   // Add cross-flavor configuration here
 
   runApp(await builder());
+}
+
+Future _setUpHive() async {
+  var directory = await p.getApplicationDocumentsDirectory();
+  await Hive.initFlutter(directory.path);
+
+  _registerHiveModelAdapters();
+
+  await _openHiveBoxSync();
+}
+
+void setOrientation() {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+}
+
+Future _openHiveBoxSync() async {
+  for (var boxName in StorageBox.values) {
+    await Hive.openBox(boxName.toString());
+  }
 }

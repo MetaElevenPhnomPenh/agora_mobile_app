@@ -10,7 +10,6 @@ ProfileResponse _$ProfileResponseFromJson(Map<String, dynamic> json) =>
     ProfileResponse(
       email: json['email'] as String,
       id: json['id'] as String,
-      isDeleted: json['is_deleted'] as bool,
       isVerify: json['is_verify'] as bool,
       phoneNumber: json['phone_number'] as String,
       profile: json['profile'] as String,
@@ -25,7 +24,6 @@ Map<String, dynamic> _$ProfileResponseToJson(ProfileResponse instance) =>
     <String, dynamic>{
       'email': instance.email,
       'id': instance.id,
-      'is_deleted': instance.isDeleted,
       'is_verify': instance.isVerify,
       'phone_number': instance.phoneNumber,
       'profile': instance.profile,

@@ -8,7 +8,6 @@ class ProfileResponse {
   ProfileResponse({
     required this.email,
     required this.id,
-    required this.isDeleted,
     required this.isVerify,
     required this.phoneNumber,
     required this.profile,
@@ -21,9 +20,6 @@ class ProfileResponse {
 
   final String email;
   final String id;
-
-  @JsonKey(name: 'is_deleted')
-  final bool isDeleted;
 
   @JsonKey(name: 'is_verify')
   final bool isVerify;
@@ -42,6 +38,32 @@ class ProfileResponse {
   final int totalSpend;
   final String type;
   final String username;
+
+  ProfileResponse copyWith({
+    String? email,
+    String? id,
+    bool? isVerify,
+    String? phoneNumber,
+    String? profile,
+    int? registerCount,
+    int? totalBalance,
+    int? totalSpend,
+    String? type,
+    String? username,
+  }) {
+    return ProfileResponse(
+      email: email ?? this.email,
+      id: id ?? this.id,
+      isVerify: isVerify ?? this.isVerify,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      profile: profile ?? this.profile,
+      registerCount: registerCount ?? this.registerCount,
+      totalBalance: totalBalance ?? this.totalBalance,
+      totalSpend: totalSpend ?? this.totalSpend,
+      type: type ?? this.type,
+      username: username ?? this.username,
+    );
+  }
 
   factory ProfileResponse.fromJson(Map<String, dynamic> json) => _$ProfileResponseFromJson(json);
 

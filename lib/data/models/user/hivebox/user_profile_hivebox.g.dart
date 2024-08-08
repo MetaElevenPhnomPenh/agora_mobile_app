@@ -57,3 +57,29 @@ class UserProfileHiveboxAdapter extends TypeAdapter<UserProfileHivebox> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+UserProfileHivebox _$UserProfileHiveboxFromJson(Map<String, dynamic> json) =>
+    UserProfileHivebox(
+      id: json['id'] as String,
+      email: json['email'] as String,
+      isVerify: json['is_verify'] as bool,
+      phoneNumber: json['phone_number'] as String,
+      profile: json['profile'] as String,
+      type: json['type'] as String,
+      username: json['username'] as String,
+    );
+
+Map<String, dynamic> _$UserProfileHiveboxToJson(UserProfileHivebox instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'email': instance.email,
+      'is_verify': instance.isVerify,
+      'phone_number': instance.phoneNumber,
+      'profile': instance.profile,
+      'type': instance.type,
+      'username': instance.username,
+    };

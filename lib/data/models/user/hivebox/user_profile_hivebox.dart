@@ -1,7 +1,9 @@
 import 'package:agora/export.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'user_profile_hivebox.g.dart';
 
+@JsonSerializable()
 @HiveType(typeId: 0)
 class UserProfileHivebox extends HiveObject {
   UserProfileHivebox({
@@ -19,8 +21,10 @@ class UserProfileHivebox extends HiveObject {
   @HiveField(1)
   final String email;
   @HiveField(2)
+  @JsonKey(name: 'is_verify')
   final bool isVerify;
   @HiveField(3)
+  @JsonKey(name: 'phone_number')
   final String phoneNumber;
   @HiveField(4)
   final String profile;
@@ -28,4 +32,28 @@ class UserProfileHivebox extends HiveObject {
   final String type;
   @HiveField(6)
   final String username;
+
+  UserProfileHivebox copyWith({
+    String? email,
+    String? id,
+    bool? isVerify,
+    String? phoneNumber,
+    String? profile,
+    String? type,
+    String? username,
+  }) {
+    return UserProfileHivebox(
+      email: email ?? this.email,
+      id: id ?? this.id,
+      isVerify: isVerify ?? this.isVerify,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      profile: profile ?? this.profile,
+      type: type ?? this.type,
+      username: username ?? this.username,
+    );
+  }
+
+  factory UserProfileHivebox.fromJson(Map<String, dynamic> json) => _$UserProfileHiveboxFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserProfileHiveboxToJson(this);
 }
