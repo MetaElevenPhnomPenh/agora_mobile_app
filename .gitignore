@@ -83,6 +83,10 @@ unlinked_spec.ds
 **/ios/ServiceDefinitions.json
 **/ios/Runner/GeneratedPluginRegistrant.*
 
+# ignore changed from xCode
+**/ios/Podfile.lock
+**/ios/Runner.xcodeproj/project.pbxproj
+
 # Coverage
 coverage/
 
