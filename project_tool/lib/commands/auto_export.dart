@@ -65,7 +65,7 @@ T? deserializeType<T>(dynamic json) {
       ''';
 
     var serializeFile =
-        File(testablePath('lib/utils/helpers/serializer.g.dart'));
+        File(testablePath('lib/utils/helpers/serializer.gen.dart'));
     await serializeFile.writeAsString(serializeCode, mode: FileMode.write);
   }
 
@@ -77,7 +77,7 @@ ${hiveClasses.map((e) => '  Hive.registerAdapter(${e}Adapter());').join('\n')}
 }
 ''';
 
-    var bootstrapFile = File(testablePath('lib/utils/core/bootstrap.g.dart'));
+    var bootstrapFile = File(testablePath('lib/utils/core/bootstrap.gen.dart'));
     await bootstrapFile.writeAsString(content, mode: FileMode.write);
   }
 }
@@ -103,7 +103,7 @@ class AutoExportCommand extends Command {
     for (var fsEntity in (await directory.list().toList())) {
       if (fsEntity.path.endsWith('.dart')) {
         if (!isLib) {
-          if (!['_.dart', '.g.dart', '.freezed.dart', '.part.dart']
+          if (!['_.dart', '.g.dart','.gen.dart', '.freezed.dart', '.part.dart']
               .any((suffix) => fsEntity.path.endsWith(suffix))) {
             files.add(basename(fsEntity.path));
             await capture.scan(fsEntity);

@@ -41,6 +41,7 @@ dependencies:
   pinput: ^5.0.0
   timer_count_down: ^2.2.2
   equatable: ^2.0.5
+  json_annotation: ^4.9.0
 
 dev_dependencies:
   bloc_test: ^9.1.7
@@ -50,7 +51,7 @@ dev_dependencies:
     sdk: flutter
   mocktail: ^1.0.4
   very_good_analysis: ^6.0.0
-  json_annotation: ^4.9.0
+  json_serializable: ^6.8.0
 
 flutter:
   uses-material-design: true

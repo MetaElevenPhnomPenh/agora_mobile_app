@@ -1,20 +1,18 @@
 /// attachment_response
 import 'package:agora/export.dart';
+import 'package:json_annotation/json_annotation.dart';
+part 'upload_file_response.g.dart';
 
+@JsonSerializable()
 class UploadFileResponse {
-
   final String id;
 
   UploadFileResponse({
     required this.id,
   });
 
-//coverFileName: json['cover_file_name'].toString().toAppString()!,
-// fromJson
-  factory UploadFileResponse.fromJson(Map<String, dynamic> json) {
-    return UploadFileResponse(
-      id: json['_id'].toString().toAppString()!,
-    );
-  }
-// toJson
+  factory UploadFileResponse.fromJson(Map<String, dynamic> json) => _$UploadFileResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UploadFileResponseToJson(this);
+
 }

@@ -1,6 +1,6 @@
 import 'package:agora/export.dart';
 
-part 'serializer.g.dart';
+part 'serializer.gen.dart';
 
 K deserialize<K>(dynamic json) {
   var result = deserializeType<K>(json);

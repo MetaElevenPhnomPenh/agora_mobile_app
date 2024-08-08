@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:agora/export.dart';
 import 'package:bloc/bloc.dart';
-part 'bootstrap.g.dart';
+part 'bootstrap.gen.dart';
 
 
 class AppBlocObserver extends BlocObserver {
