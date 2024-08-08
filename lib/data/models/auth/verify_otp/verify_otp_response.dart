@@ -5,15 +5,16 @@ part 'verify_otp_response.g.dart';
 
 @JsonSerializable()
 class VerifyOtpResponse {
+  VerifyOtpResponse({
+    required this.accessToken,
+    required this.refreshToken,
+  });
+
   @JsonKey(name: 'access_token')
   final String accessToken;
   @JsonKey(name: 'refresh_token')
   final String refreshToken;
 
-  VerifyOtpResponse({
-    required this.accessToken,
-    required this.refreshToken,
-  });
 
 //coverFileName: json['cover_file_name'].toString().toAppString()!,
 // fromJson

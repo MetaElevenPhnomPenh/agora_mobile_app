@@ -6,11 +6,12 @@ part 'register_response.g.dart';
 
 @JsonSerializable()
 class RegisterResponse {
-  final String key;
-
   RegisterResponse({
     required this.key,
   });
+
+  final String key;
+
 
 //coverFileName: json['cover_file_name'].toString().toAppString()!,
 // fromJson

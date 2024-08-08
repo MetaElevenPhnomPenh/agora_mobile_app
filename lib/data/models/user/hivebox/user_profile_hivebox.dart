@@ -1,8 +1,19 @@
 import 'package:agora/export.dart';
+
 part 'user_profile_hivebox.g.dart';
 
 @HiveType(typeId: 0)
 class UserProfileHivebox extends HiveObject {
+  UserProfileHivebox({
+    required this.id,
+    required this.email,
+    required this.isVerify,
+    required this.phoneNumber,
+    required this.profile,
+    required this.type,
+    required this.username,
+  });
+
   @HiveField(0)
   final String id;
   @HiveField(1)
@@ -17,14 +28,4 @@ class UserProfileHivebox extends HiveObject {
   final String type;
   @HiveField(6)
   final String username;
-
-  UserProfileHivebox({
-    required this.id,
-    required this.email,
-    required this.isVerify,
-    required this.phoneNumber,
-    required this.profile,
-    required this.type,
-    required this.username,
-  });
 }

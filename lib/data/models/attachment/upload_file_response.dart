@@ -5,11 +5,12 @@ part 'upload_file_response.g.dart';
 
 @JsonSerializable()
 class UploadFileResponse {
-  final String id;
-
   UploadFileResponse({
     required this.id,
   });
+
+  final String id;
+
 
   factory UploadFileResponse.fromJson(Map<String, dynamic> json) => _$UploadFileResponseFromJson(json);
 
