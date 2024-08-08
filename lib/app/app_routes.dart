@@ -23,6 +23,8 @@ class AppRoutes {
         return _buildRoute(const VerifyOtpPage(), settings);
       case ProductsListedByCategoryPage.route:
         return _buildRoute(const ProductsListedByCategoryPage(), settings);
+      case WantToBuyPage.route:
+        return _buildRoute(const WantToBuyPage(), settings);
       default:
         return _buildRoute(
           Scaffold(
