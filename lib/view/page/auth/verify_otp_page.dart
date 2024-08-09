@@ -73,7 +73,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
         listenWhen: (previous, current) => previous.stateStatus != current.stateStatus,
         listener: (context, state) {
           if (state.stateStatus == AppStateStatus.success) {
-            context.navigate.pushNamedAndRemoveUntil(HomePage.route);
+            app.restart();
           } else if (state.stateStatus == AppStateStatus.failure) {
             app.snackBar.show(state.message!);
           }

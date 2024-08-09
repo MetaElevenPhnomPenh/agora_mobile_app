@@ -63,7 +63,7 @@ class NavigationHelper {
     return Navigator.pushReplacementNamed(getContext, route, arguments: arg);
   }
 
-  Future pushNamedAndRemoveUntil(String route, [arg, String? predicate]) {
+  Future pushNamedAndRemoveUntil(String route, {dynamic arg, String? predicate}) {
     log('pushAndRemoveUntil to $route ::::::::::', name: 'NavigationHelper');
     return Navigator.pushNamedAndRemoveUntil(
       getContext,
@@ -93,10 +93,10 @@ class NavigationHelper {
     );
   }
 
-  Future<bool> pop<T>({T? arg}) {
+  Future<bool> pop<T>({T? arg, bool rootNavigator = false}) {
     var prevRoute = ModalRoute.of(getContext)?.settings.name ?? '';
     log('Pop on $prevRoute', name: 'NavigationHelper');
-    return Navigator.of(getContext).maybePop(arg);
+    return Navigator.of(getContext, rootNavigator: rootNavigator).maybePop(arg);
   }
 
   void popUntil(String route) {
@@ -104,9 +104,9 @@ class NavigationHelper {
     Navigator.popUntil(getContext, ModalRoute.withName(route));
   }
 
-  void forcedPop<T>({T? arg}) {
+  void forcedPop<T>({T? arg, bool rootNavigator = false}) {
     var prevRoute = ModalRoute.of(getContext)?.settings.name ?? '';
     log('Forcing Pop on $prevRoute ::::::::::', name: 'NavigationHelper');
-    Navigator.of(getContext).pop(arg);
+    Navigator.of(getContext, rootNavigator: rootNavigator).pop(arg);
   }
 }

@@ -50,7 +50,7 @@ class _MePageState extends State<MePage> {
       ),
       body: BlocBuilder<ProfileCubit, ProfileState>(
         builder: (context, state) {
-          final UserProfileHivebox? user = app.isLogin ? state.data : null;
+          final UserProfileHivebox? user = app.isLogin ? app.user : null;
           return AppListViewBuilder(
             children: [
               sectionAvatar(user),

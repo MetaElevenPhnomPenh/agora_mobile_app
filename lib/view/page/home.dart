@@ -7,13 +7,13 @@ class HomePage extends StatefulWidget {
 
   static const String route = '/HomePage';
 
+  static GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  static GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-
   int _currentTappedIndex = 1;
 
   final List<Widget> _tabViews = [
@@ -21,14 +21,14 @@ class _HomePageState extends State<HomePage> {
     const HomeScreenWidget(),
     const SizedBox(),
     MePage(
-      onDrawer: () => scaffoldKey.currentState?.openEndDrawer(),
+      onDrawer: () => HomePage.scaffoldKey.currentState?.openEndDrawer(),
     ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
+      key: HomePage.scaffoldKey,
       endDrawer: drawerWidget(),
       body: _tabViews[_currentTappedIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -99,14 +99,14 @@ class _HomePageState extends State<HomePage> {
                 child: app.isLogin
                     ? OutlinedButton(
                         onPressed: () async {
-                          context.navigate.pop();
+                          HomePage.scaffoldKey.currentState?.closeEndDrawer();
                           await app.logout();
-                          context.navigate.pushNamedAndRemoveUntil(HomePage.route);
+                          app.restart();
                         },
                         child: Text(T.logout.r))
                     : OutlinedButton(
                         onPressed: () {
-                          context.navigate.pop();
+                          HomePage.scaffoldKey.currentState?.closeEndDrawer();
                           context.navigate.pushNamed(LoginPage.route);
                         },
                         child: Text(T.login.r)),

@@ -1,3 +1,4 @@
+export 'restart_widget.dart';
 export 'app_lifecycle_event_handler.dart';
 export 'app_navigator_observer.dart';
 export 'app_routes.dart';

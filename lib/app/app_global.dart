@@ -22,12 +22,17 @@ class AppGlobal {
 
   TokenHivebox? get token => tokenStorage.get();
 
+  UserProfileHivebox? get user => userStorage.get();
+
+  void restart() {
+    context.navigate.pushNamedAndRemoveUntil(HomePage.route, predicate: 'home');
+  }
+
   Future<void> logout() async {
     await userStorage.delete();
     await tokenStorage.delete();
     await app.context.read<ProfileCubit>().close();
   }
-
 
   final screenPaddingX = const EdgeInsets.symmetric(horizontal: 16);
   final screenPaddingY = const EdgeInsets.symmetric(vertical: 20);
