@@ -1,3 +1,4 @@
+import 'package:agora/data/_.dart';
 import 'package:agora/export.dart';
 
 class AppRoutes {
@@ -25,6 +26,8 @@ class AppRoutes {
         return _buildRoute(const ProductsListedByCategoryPage(), settings);
       case WantToBuyPage.route:
         return _buildRoute(const WantToBuyPage(), settings);
+      case ProductFilterPage.route:
+        return _buildRoute(const ProductFilterPage(), settings);
       default:
         return _buildRoute(
           Scaffold(

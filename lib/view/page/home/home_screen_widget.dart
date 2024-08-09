@@ -172,23 +172,27 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget>
                                     ],
                                   ),
                                 ),
-                                Padding(
-                                  padding: 8.pb(),
-                                  child: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.menu,
-                                        size: 14,
-                                        color: AppColor.blackColor,
-                                      ),
-                                      Text(
-                                        "Menu",
-                                        style: context.textTheme.bodyMedium
-                                            ?.copyWith(
-                                          fontSize: 12,
+                                InkWell(
+                                  onTap: () => app.navigate
+                                      .pushNamed(ProductFilterPage.route),
+                                  child: Padding(
+                                    padding: 8.pb(),
+                                    child: Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.menu,
+                                          size: 14,
+                                          color: AppColor.blackColor,
                                         ),
-                                      ),
-                                    ],
+                                        Text(
+                                          "Menu",
+                                          style: context.textTheme.bodyMedium
+                                              ?.copyWith(
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 12.sw(),
