@@ -1,6 +1,8 @@
 import 'package:agora/data/_.dart';
 import 'package:agora/data/enums/enum.dart';
 import 'package:agora/export.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,6 +17,20 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentTappedIndex = 1;
+  late final ProfileCubit cubit;
+
+  @override
+  void initState() {
+    cubit = context.read<ProfileCubit>();
+    if (app.isLogin) {
+      cubit.request();
+      if (kDebugMode) {
+        print(app.user);
+      }
+      if (kDebugMode) {}
+    }
+    super.initState();
+  }
 
   final List<Widget> _tabViews = [
     const SizedBox(),

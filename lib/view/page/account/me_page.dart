@@ -23,8 +23,9 @@ class _MePageState extends State<MePage> {
     if (app.isLogin) {
       cubit.request();
       if (kDebugMode) {
-        print(app.tokenStorage.get());
+        print(app.user);
       }
+      if (kDebugMode) {}
     }
     super.initState();
   }
@@ -50,7 +51,7 @@ class _MePageState extends State<MePage> {
       ),
       body: BlocBuilder<ProfileCubit, ProfileState>(
         builder: (context, state) {
-          final UserProfileHivebox? user = app.isLogin ? app.user : null;
+          final UserProfileHivebox? user = app.isLogin ? (state.data ?? app.user) : null;
           return AppListViewBuilder(
             children: [
               sectionAvatar(user),
