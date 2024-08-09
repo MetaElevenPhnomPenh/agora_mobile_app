@@ -14,12 +14,14 @@ class ProductFilterPage extends StatelessWidget {
           children: [
             SafeArea(
               bottom: false,
+              left: false,
               child: SizedBox(
-                height: 50,
+                height: 40,
                 child: Row(
                   children: [
-                    SizedBox(
-                      width: 90,
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      width: 70,
                       child: IconButton(
                         onPressed: () => app.navigate.pop(),
                         icon: const Icon(
@@ -34,12 +36,20 @@ class ProductFilterPage extends StatelessWidget {
                         labelPadding: EdgeInsets.zero,
                         tabAlignment: TabAlignment.start,
                         isScrollable: true,
-                        // indicatorColor: AppColor.grey6Color.withOpacity(.0),
+                        indicator: const UnderlineTabIndicator(
+                          borderSide: BorderSide(
+                            width: 2,
+                            color: AppColor.primaryButtonColor,
+                          ),
+                          insets: EdgeInsets.symmetric(
+                            horizontal: 25,
+                          ),
+                        ),
                         tabs: [
                           SizedBox(
                             width:
                                 (MediaQuery.of(context).size.width - 140) / 3,
-                            height: 50,
+                            height: 40,
                             // alignment: Alignment.centerLeft,
                             child: const Tab(
                               text: "All",
@@ -63,7 +73,7 @@ class ProductFilterPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      width: 50,
+                      width: 40,
                       child: IconButton(
                         icon: const Icon(Icons.search),
                         onPressed: () {
@@ -76,21 +86,137 @@ class ProductFilterPage extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: Container(
-                color: AppColor.grey6Color,
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 90,
-                      height: MediaQuery.of(context).size.height,
-                    ),
-                    Expanded(
-                      child: Container(
-                        color: AppColor.whiteColor,
+              child: TabBarView(
+                children: [
+                  for (int i = 0; i < 3; i++)
+                    Container(
+                      color: AppColor.grey6Color,
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: 90,
+                            height: MediaQuery.of(context).size.height,
+                            child: ListView.builder(
+                              padding: EdgeInsets.zero,
+                              itemCount: 12,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: 12.py(),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        "Hello $index",
+                                        style: context.textTheme.bodyMedium
+                                            ?.copyWith(
+                                          fontSize: 14,
+                                          fontWeight: index == 1
+                                              ? FontWeight.w700
+                                              : null,
+                                        ),
+                                      ),
+                                      if (index == 1) ...[
+                                        4.sh(),
+                                        Container(
+                                          width: 15,
+                                          height: 1,
+                                          color: AppColor.blackColor,
+                                        ),
+                                      ],
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                          Expanded(
+                            child: Container(
+                              height: MediaQuery.of(context).size.height,
+                              color: Colors.white,
+                              child: ListView.builder(
+                                itemCount: 3,
+                                padding: EdgeInsets.zero,
+                                itemBuilder: (context, ind) {
+                                  return ListView(
+                                    shrinkWrap: true,
+                                    padding: EdgeInsets.zero,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    children: [
+                                      12.sh(),
+                                      Padding(
+                                        padding: 12.px(),
+                                        child: Text(
+                                          "Category ${ind + 1}",
+                                          style: context.textTheme.bodyMedium
+                                              ?.copyWith(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                      GridView.builder(
+                                        shrinkWrap: true,
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        padding: EdgeInsets.zero,
+                                        itemCount: 6 - ind,
+                                        gridDelegate:
+                                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 3,
+                                          crossAxisSpacing: 8,
+                                          mainAxisSpacing: 8,
+                                          childAspectRatio: 1,
+                                        ),
+                                        itemBuilder: (_, index) =>
+                                            GestureDetector(
+                                          onTap: () => app.navigate.pushNamed(
+                                            ProductsListedByCategoryPage.route,
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Expanded(
+                                                  child: Container(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width,
+                                                    padding:
+                                                        const EdgeInsets.all(8),
+                                                    child: Image.network(
+                                                      "https://target.scene7.com/is/image/Target/GUEST_4b405ae1-a4d6-4c57-b1f2-fb170b9c689c?wid=488&hei=488&fmt=pjpeg",
+                                                    ),
+                                                  ),
+                                                ),
+                                                const Text(
+                                                  "White color",
+                                                  maxLines: 1,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    fontSize: 12,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                ],
               ),
             ),
           ],
