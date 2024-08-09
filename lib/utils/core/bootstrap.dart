@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:io';
+
 import 'package:agora/export.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:path_provider/path_provider.dart' as p;
 
 part 'bootstrap.gen.dart';

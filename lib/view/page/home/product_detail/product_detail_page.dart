@@ -523,7 +523,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                 itemScrollController.jumpTo(index: 7);
               },
               child: const Tab(
-                text: "Commend",
+                text: "Comment",
               ),
             ),
             InkWell(

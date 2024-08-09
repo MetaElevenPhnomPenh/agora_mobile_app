@@ -7,7 +7,8 @@ class HomeScreenWidget extends StatefulWidget {
   State<HomeScreenWidget> createState() => _HomeScreenWidgetState();
 }
 
-class _HomeScreenWidgetState extends State<HomeScreenWidget> with SingleTickerProviderStateMixin {
+class _HomeScreenWidgetState extends State<HomeScreenWidget>
+    with SingleTickerProviderStateMixin {
   late TabController bottomTabController;
 
   @override
@@ -23,7 +24,8 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> with SingleTickerPr
         children: [
           Expanded(
             child: NestedScrollView(
-              headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+              headerSliverBuilder:
+                  (BuildContext context, bool innerBoxIsScrolled) {
                 return <Widget>[
                   SliverAppBar(
                     title: const Row(
@@ -58,8 +60,10 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> with SingleTickerPr
                           children: [
                             Expanded(
                               child: Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 8),
-                                margin: const EdgeInsets.symmetric(horizontal: 12),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8),
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 12),
                                 decoration: BoxDecoration(
                                   color: Colors.grey[100],
                                 ),
@@ -112,31 +116,83 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> with SingleTickerPr
                               ),
                             ),
                             const SizedBox(height: 12),
-                            SizedBox(
-                              height: 35,
-                              child: TabBar(
-                                isScrollable: true,
-                                tabAlignment: TabAlignment.start,
-                                controller: bottomTabController,
-                                labelStyle: const TextStyle(
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w700,
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Stack(
+                                    children: [
+                                      SizedBox(
+                                        height: 35,
+                                        child: TabBar(
+                                          isScrollable: true,
+                                          tabAlignment: TabAlignment.start,
+                                          controller: bottomTabController,
+                                          labelStyle: const TextStyle(
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                          indicatorWeight: .5,
+                                          automaticIndicatorColorAdjustment:
+                                              false,
+                                          labelPadding:
+                                              const EdgeInsets.only(bottom: 10),
+                                          tabs: [
+                                            for (int i = 0; i < 12; i++)
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                  horizontal: 12,
+                                                ),
+                                                child: Text(
+                                                  'Tag',
+                                                  style: context
+                                                      .textTheme.bodyMedium,
+                                                ),
+                                              ),
+                                          ],
+                                        ),
+                                      ),
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Container(
+                                          width: 25,
+                                          height: 35,
+                                          decoration: BoxDecoration(
+                                            gradient: LinearGradient(
+                                              begin: Alignment.centerLeft,
+                                              end: Alignment.centerRight,
+                                              colors: [
+                                                Colors.white.withOpacity(.0),
+                                                Colors.white,
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
-                                indicatorWeight: .5,
-                                automaticIndicatorColorAdjustment: false,
-                                labelPadding: const EdgeInsets.only(bottom: 10),
-                                tabs: [
-                                  for (int i = 0; i < 12; i++)
-                                    const Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 12,
+                                Padding(
+                                  padding: 8.pb(),
+                                  child: Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.menu,
+                                        size: 14,
+                                        color: AppColor.blackColor,
                                       ),
-                                      child: Text(
-                                        'Tag',
+                                      Text(
+                                        "Menu",
+                                        style: context.textTheme.bodyMedium
+                                            ?.copyWith(
+                                          fontSize: 12,
+                                        ),
                                       ),
-                                    ),
-                                ],
-                              ),
+                                    ],
+                                  ),
+                                ),
+                                12.sw(),
+                              ],
                             ),
                           ],
                         ),
@@ -159,7 +215,8 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> with SingleTickerPr
                             GridView.builder(
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
-                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 5,
                               ),
                               itemBuilder: (_, index) => InkWell(
@@ -175,21 +232,25 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> with SingleTickerPr
                             GridView.builder(
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
-                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 4,
                               ),
-                              itemBuilder: (_, index) => const BrandCardWidget(),
+                              itemBuilder: (_, index) =>
+                                  const BrandCardWidget(),
                               itemCount: 4,
                             ),
                             GridView.builder(
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
-                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
                                 mainAxisSpacing: .5,
                                 crossAxisSpacing: .5,
                               ),
-                              itemBuilder: (_, index) => const ProductCardWidget(),
+                              itemBuilder: (_, index) =>
+                                  const ProductCardWidget(),
                               itemCount: 14,
                             ),
                           ],
