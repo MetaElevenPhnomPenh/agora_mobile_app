@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:agora/export.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart' as p;
 
 part 'bootstrap.gen.dart';
@@ -45,7 +47,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   await _setUpHive();
 
   // Add cross-flavor configuration here
-
+  _initData();
   runApp(await builder());
 }
 
@@ -68,5 +70,11 @@ void setOrientation() {
 Future _openHiveBoxSync() async {
   for (var boxName in StorageBox.values) {
     await Hive.openBox(boxName.name);
+  }
+}
+
+Future _initData() async {
+  if (app.isLogin) {
+    app.context.read<ProfileCubit>().pastFromStorage();
   }
 }

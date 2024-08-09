@@ -1,7 +1,6 @@
 import "dart:async";
 import "dart:developer";
 import "dart:io";
-import "dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart";
 import "package:dio/dio.dart";
 import 'package:agora/export.dart';
 import "package:flutter/foundation.dart";
@@ -58,7 +57,7 @@ class DioClient {
     Map<String, dynamic>? request,
     required String path,
     void Function(int, int)? onSendProgress,
-    void Function(dynamic)? response,
+    void Function(dynamic)? onResponse,
     CancelToken? cancelToken,
     Map<String, File>? file,
     Map<String, List<File>>? files,
@@ -71,10 +70,10 @@ class DioClient {
         onSendProgress: onSendProgress,
         cancelToken: cancelToken,
       );
-      ;
+      log('Response: $res', name: 'POST');
       return BaseResponse.fromMap(res, (data) {
         try {
-          response?.call(data);
+          onResponse?.call(data);
         } catch (_) {}
         return deserialize<K>(data);
       });
@@ -87,7 +86,7 @@ class DioClient {
   static Future<BaseResponse<K>> getMethod<K>({
     required String path,
     Map<String, dynamic>? queryParameters,
-    void Function(dynamic)? response,
+    void Function(dynamic)? onResponse,
   }) async {
     try {
       /// Test slow performance 15s
@@ -100,7 +99,7 @@ class DioClient {
       log('Response: $res', name: 'GET');
       return BaseResponse.fromMap(res, (data) {
         try {
-          response?.call(data);
+          onResponse?.call(data);
         } catch (_) {}
         return deserialize<K>(data);
       });
@@ -113,7 +112,7 @@ class DioClient {
   static Future<BaseResponse<K>> putMethod<K>({
     Map<String, dynamic>? request,
     required String path,
-    void Function(dynamic)? response,
+    void Function(dynamic)? onResponse,
     Map<String, File>? file,
     Map<String, List<File>>? files,
   }) async {
@@ -126,7 +125,7 @@ class DioClient {
       log('Response: $res', name: 'PUT');
       return BaseResponse.fromMap(res, (data) {
         try {
-          response?.call(data);
+          onResponse?.call(data);
         } catch (_) {}
         return deserialize<K>(data);
       });
@@ -139,7 +138,7 @@ class DioClient {
   static Future<BaseResponse<K>> deleteMethod<K>({
     dynamic request,
     required String path,
-    void Function(dynamic)? response,
+    void Function(dynamic)? onResponse,
   }) async {
     try {
       Dio dio = DioClient.instance;
@@ -147,7 +146,7 @@ class DioClient {
       log('Response: $res', name: 'DELETE');
       return BaseResponse.fromMap(res, (data) {
         try {
-          response?.call(data);
+          onResponse?.call(data);
         } catch (_) {}
         return deserialize<K>(data);
       });
