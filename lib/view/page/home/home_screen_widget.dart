@@ -155,7 +155,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget>
                                       Align(
                                         alignment: Alignment.centerRight,
                                         child: Container(
-                                          width: 25,
+                                          width: 50,
                                           height: 35,
                                           decoration: BoxDecoration(
                                             gradient: LinearGradient(
@@ -163,6 +163,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget>
                                               end: Alignment.centerRight,
                                               colors: [
                                                 Colors.white.withOpacity(.0),
+                                                Colors.white.withOpacity(.7),
                                                 Colors.white,
                                               ],
                                             ),

@@ -1,9 +1,17 @@
 import 'package:agora/export.dart';
 
-class ProductFilterPage extends StatelessWidget {
+class ProductFilterPage extends StatefulWidget {
   const ProductFilterPage({super.key});
 
   static const String route = "/ProductFilterPage";
+
+  @override
+  State<ProductFilterPage> createState() => _ProductFilterPageState();
+}
+
+class _ProductFilterPageState extends State<ProductFilterPage> {
+  final PageController _pageController = PageController();
+  int _currentPage = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -100,30 +108,42 @@ class ProductFilterPage extends StatelessWidget {
                               padding: EdgeInsets.zero,
                               itemCount: 12,
                               itemBuilder: (context, index) {
-                                return Padding(
-                                  padding: 12.py(),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                        "Hello $index",
-                                        style: context.textTheme.bodyMedium
-                                            ?.copyWith(
-                                          fontSize: 14,
-                                          fontWeight: index == 1
-                                              ? FontWeight.w700
-                                              : null,
+                                return InkWell(
+                                  onTap: () {
+                                    if (mounted) {
+                                      setState(() {
+                                        _currentPage = index;
+                                      });
+                                    }
+                                    _pageController.jumpToPage(
+                                      _currentPage,
+                                    );
+                                  },
+                                  child: Padding(
+                                    padding: 16.py(),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          "Hello $index",
+                                          style: context.textTheme.bodyMedium
+                                              ?.copyWith(
+                                            fontSize: 14,
+                                            fontWeight: index == _currentPage
+                                                ? FontWeight.w700
+                                                : null,
+                                          ),
                                         ),
-                                      ),
-                                      if (index == 1) ...[
-                                        4.sh(),
-                                        Container(
-                                          width: 15,
-                                          height: 1,
-                                          color: AppColor.blackColor,
-                                        ),
+                                        if (index == _currentPage) ...[
+                                          4.sh(),
+                                          Container(
+                                            width: 15,
+                                            height: 1,
+                                            color: AppColor.blackColor,
+                                          ),
+                                        ],
                                       ],
-                                    ],
+                                    ),
                                   ),
                                 );
                               },
@@ -133,81 +153,97 @@ class ProductFilterPage extends StatelessWidget {
                             child: Container(
                               height: MediaQuery.of(context).size.height,
                               color: Colors.white,
-                              child: ListView.builder(
-                                itemCount: 3,
-                                padding: EdgeInsets.zero,
-                                itemBuilder: (context, ind) {
-                                  return ListView(
-                                    shrinkWrap: true,
-                                    padding: EdgeInsets.zero,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    children: [
-                                      12.sh(),
-                                      Padding(
-                                        padding: 12.px(),
-                                        child: Text(
-                                          "Category ${ind + 1}",
-                                          style: context.textTheme.bodyMedium
-                                              ?.copyWith(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ),
-                                      GridView.builder(
-                                        shrinkWrap: true,
-                                        physics:
-                                            const NeverScrollableScrollPhysics(),
-                                        padding: EdgeInsets.zero,
-                                        itemCount: 6 - ind,
-                                        gridDelegate:
-                                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 3,
-                                          crossAxisSpacing: 8,
-                                          mainAxisSpacing: 8,
-                                          childAspectRatio: 1,
-                                        ),
-                                        itemBuilder: (_, index) =>
-                                            GestureDetector(
-                                          onTap: () => app.navigate.pushNamed(
-                                            ProductsListedByCategoryPage.route,
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                Expanded(
-                                                  child: Container(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .width,
-                                                    padding:
-                                                        const EdgeInsets.all(8),
-                                                    child: Image.network(
-                                                      "https://target.scene7.com/is/image/Target/GUEST_4b405ae1-a4d6-4c57-b1f2-fb170b9c689c?wid=488&hei=488&fmt=pjpeg",
-                                                    ),
-                                                  ),
+                              child: PageView.builder(
+                                controller: _pageController,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: 12,
+                                scrollDirection: Axis.vertical,
+                                itemBuilder: (context, page) {
+                                  return SizedBox(
+                                    child: ListView.builder(
+                                      itemCount: 3,
+                                      padding: EdgeInsets.zero,
+                                      itemBuilder: (context, ind) {
+                                        return ListView(
+                                          shrinkWrap: true,
+                                          padding: EdgeInsets.zero,
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          children: [
+                                            12.sh(),
+                                            Padding(
+                                              padding: 12.px(),
+                                              child: Text(
+                                                "Category ${ind + 1}",
+                                                style: context
+                                                    .textTheme.bodyMedium
+                                                    ?.copyWith(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w500,
                                                 ),
-                                                const Text(
-                                                  "White color",
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    fontSize: 12,
-                                                  ),
-                                                ),
-                                              ],
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                            GridView.builder(
+                                              shrinkWrap: true,
+                                              physics:
+                                                  const NeverScrollableScrollPhysics(),
+                                              padding: EdgeInsets.zero,
+                                              itemCount: 6 - ind,
+                                              gridDelegate:
+                                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 3,
+                                                crossAxisSpacing: 8,
+                                                mainAxisSpacing: 8,
+                                                childAspectRatio: 1,
+                                              ),
+                                              itemBuilder: (_, index) =>
+                                                  GestureDetector(
+                                                onTap: () =>
+                                                    app.navigate.pushNamed(
+                                                  ProductsListedByCategoryPage
+                                                      .route,
+                                                ),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Container(
+                                                          width: MediaQuery.of(
+                                                                  context)
+                                                              .size
+                                                              .width,
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8),
+                                                          child: Image.network(
+                                                            "https://target.scene7.com/is/image/Target/GUEST_4b405ae1-a4d6-4c57-b1f2-fb170b9c689c?wid=488&hei=488&fmt=pjpeg",
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      const Text(
+                                                        "White color",
+                                                        maxLines: 1,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          fontSize: 12,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    ),
                                   );
                                 },
                               ),
