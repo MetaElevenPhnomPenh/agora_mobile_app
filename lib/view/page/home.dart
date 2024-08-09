@@ -23,10 +23,8 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     cubit = context.read<ProfileCubit>();
     if (app.isLogin) {
+      /// Refresh User info
       cubit.request();
-      if (kDebugMode) {
-        print(app.user);
-      }
       if (kDebugMode) {}
     }
     super.initState();

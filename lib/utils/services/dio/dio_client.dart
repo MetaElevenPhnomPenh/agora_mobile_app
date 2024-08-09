@@ -1,6 +1,7 @@
 import "dart:async";
 import "dart:developer";
 import "dart:io";
+import "dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart";
 import "package:dio/dio.dart";
 import 'package:agora/export.dart';
 import "package:flutter/foundation.dart";
@@ -57,19 +58,26 @@ class DioClient {
     Map<String, dynamic>? request,
     required String path,
     void Function(int, int)? onSendProgress,
+    void Function(dynamic)? response,
     CancelToken? cancelToken,
     Map<String, File>? file,
     Map<String, List<File>>? files,
   }) async {
     try {
       Dio dio = DioClient.instance;
-      var response = await dio.post(
+      var res = await dio.post(
         path,
         data: await _formData(request: request, file: file, files: files),
         onSendProgress: onSendProgress,
         cancelToken: cancelToken,
       );
-      return BaseResponse.fromMap(response, (data) => deserialize<K>(data));
+      ;
+      return BaseResponse.fromMap(res, (data) {
+        try {
+          response?.call(data);
+        } catch (_) {}
+        return deserialize<K>(data);
+      });
     } catch (e) {
       if (kDebugMode) {}
       throw CustomException(e).toString();
@@ -79,17 +87,23 @@ class DioClient {
   static Future<BaseResponse<K>> getMethod<K>({
     required String path,
     Map<String, dynamic>? queryParameters,
+    void Function(dynamic)? response,
   }) async {
     try {
       /// Test slow performance 15s
       // await Future.delayed(const Duration(seconds: 15));
       Dio dio = DioClient.instance;
-      var response = await dio.get(
+      var res = await dio.get(
         path,
         queryParameters: queryParameters,
       );
-      log('Response: $response', name: 'GET');
-      return BaseResponse.fromMap(response, (data) => deserialize<K>(data));
+      log('Response: $res', name: 'GET');
+      return BaseResponse.fromMap(res, (data) {
+        try {
+          response?.call(data);
+        } catch (_) {}
+        return deserialize<K>(data);
+      });
     } catch (e) {
       if (kDebugMode) {}
       throw CustomException(e).toString();
@@ -99,17 +113,23 @@ class DioClient {
   static Future<BaseResponse<K>> putMethod<K>({
     Map<String, dynamic>? request,
     required String path,
+    void Function(dynamic)? response,
     Map<String, File>? file,
     Map<String, List<File>>? files,
   }) async {
     try {
       Dio dio = DioClient.instance;
-      var response = await dio.put(
+      var res = await dio.put(
         path,
         data: await _formData(request: request, file: file, files: files),
       );
-      log('Response: $response', name: 'PUT');
-      return BaseResponse.fromMap(response, (data) => deserialize<K>(data));
+      log('Response: $res', name: 'PUT');
+      return BaseResponse.fromMap(res, (data) {
+        try {
+          response?.call(data);
+        } catch (_) {}
+        return deserialize<K>(data);
+      });
     } catch (e) {
       if (kDebugMode) {}
       throw CustomException(e).toString();
@@ -119,12 +139,18 @@ class DioClient {
   static Future<BaseResponse<K>> deleteMethod<K>({
     dynamic request,
     required String path,
+    void Function(dynamic)? response,
   }) async {
     try {
       Dio dio = DioClient.instance;
-      var response = await dio.delete(path, data: request);
-      log('Response: $response', name: 'DELETE');
-      return BaseResponse.fromMap(response, (data) => deserialize<K>(data));
+      var res = await dio.delete(path, data: request);
+      log('Response: $res', name: 'DELETE');
+      return BaseResponse.fromMap(res, (data) {
+        try {
+          response?.call(data);
+        } catch (_) {}
+        return deserialize<K>(data);
+      });
     } catch (e) {
       if (kDebugMode) {}
       throw CustomException(e).toString();

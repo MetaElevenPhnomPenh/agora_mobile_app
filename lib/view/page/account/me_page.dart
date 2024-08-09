@@ -21,10 +21,8 @@ class _MePageState extends State<MePage> {
   void initState() {
     cubit = context.read<ProfileCubit>();
     if (app.isLogin) {
+      /// Refresh User info
       cubit.request();
-      if (kDebugMode) {
-        print(app.user);
-      }
       if (kDebugMode) {}
     }
     super.initState();
