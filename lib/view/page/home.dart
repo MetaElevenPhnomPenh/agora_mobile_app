@@ -96,7 +96,20 @@ class _HomePageState extends State<HomePage> {
               ),
               SizedBox(
                 width: context.mediaQuery.size.width,
-                child: app.isLogin ? OutlinedButton(onPressed: () {}, child: Text(T.logout.r)) : OutlinedButton(onPressed: () => context.navigate.pushNamed(LoginPage.route), child: Text(T.login.r)),
+                child: app.isLogin
+                    ? OutlinedButton(
+                        onPressed: () async {
+                          context.navigate.pop();
+                          await app.logout();
+                          context.navigate.pushNamedAndRemoveUntil(HomePage.route);
+                        },
+                        child: Text(T.logout.r))
+                    : OutlinedButton(
+                        onPressed: () {
+                          context.navigate.pop();
+                          context.navigate.pushNamed(LoginPage.route);
+                        },
+                        child: Text(T.login.r)),
               ),
             ],
           ),
