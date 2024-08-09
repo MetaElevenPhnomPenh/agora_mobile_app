@@ -10,22 +10,25 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBlocsProvider(
-      child: BlocBuilder<ProfileCubit, ProfileState>(
-        builder: (context, state) {
-          return MaterialApp(
-            localizationsDelegates: const [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            theme: customLightTheme,
-            darkTheme: customDarkTheme,
-            navigatorKey: globalKey,
-            onGenerateRoute: AppRoutes.generateRoute,
-            home: const HomePage(),
-          );
-        },
-      ),
+      child: Builder(builder: (context) {
+        app.initData(context);
+        return BlocBuilder<ProfileCubit, ProfileState>(
+          builder: (context, state) {
+            return MaterialApp(
+              localizationsDelegates: const [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              theme: customLightTheme,
+              darkTheme: customDarkTheme,
+              navigatorKey: globalKey,
+              onGenerateRoute: AppRoutes.generateRoute,
+              home: const HomePage(),
+            );
+          },
+        );
+      }),
     );
   }
 }

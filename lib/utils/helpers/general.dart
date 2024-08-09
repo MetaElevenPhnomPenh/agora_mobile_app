@@ -1,16 +1,6 @@
 import 'package:agora/export.dart';
-import 'package:path/path.dart' as p;
 
 AppGlobal get app => AppGlobal();
-
-Color appIconColor(context) {
-  return Theme.of(context).appBarTheme.iconTheme!.color!;
-}
-
-String appExtension(String value) {
-  String extension = p.extension(value);
-  return extension.replaceFirst('.', '');
-}
 
 bool checkKeyMap(Map? arr, dynamic key) {
   if (arr == null || key == null) {

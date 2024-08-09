@@ -22,7 +22,7 @@ class AppImageSvg extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return appExtension(path) == 'svg'
+    return app.extension(path) == 'svg'
         ? SvgPicture.asset(
             path,
             fit: fit,
@@ -31,7 +31,7 @@ class AppImageSvg extends StatelessWidget {
             colorFilter: isDefaultColor
                 ? null
                 : ColorFilter.mode(
-                    color ?? appIconColor(context),
+                    color ?? app.iconColor(context),
                     BlendMode.srcIn,
                   ),
           )
@@ -40,7 +40,7 @@ class AppImageSvg extends StatelessWidget {
             fit: fit,
             width: width,
             height: height,
-            color: isDefaultColor ? null : (color ?? appIconColor(context)),
+            color: isDefaultColor ? null : (color ?? app.iconColor(context)),
           );
   }
 }

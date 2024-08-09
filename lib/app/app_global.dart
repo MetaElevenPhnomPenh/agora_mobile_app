@@ -1,5 +1,6 @@
 import 'package:agora/export.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:path/path.dart' as p;
 
 class AppGlobal {
   NavigationHelper get navigate => NavigationHelper();
@@ -9,6 +10,9 @@ class AppGlobal {
   SnackBarHelper get snackBar => SnackBarHelper();
 
   String DEFAULT_COUNTRY_CODE = '+855';
+
+   ScrollPhysics get scrollPhysics => const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics());
+
 
   void focusNew(BuildContext context) {
     FocusScope.of(context).requestFocus(FocusNode());
@@ -32,6 +36,22 @@ class AppGlobal {
     await userStorage.delete();
     await tokenStorage.delete();
     await app.context.read<ProfileCubit>().close();
+  }
+
+  Future initData(BuildContext context) async {
+    if (app.isLogin) {
+      context.read<ProfileCubit>().pastFromStorage();
+    }
+  }
+
+
+  Color iconColor(context) {
+    return Theme.of(context).appBarTheme.iconTheme!.color!;
+  }
+
+  String extension(String value) {
+    String extension = p.extension(value);
+    return extension.replaceFirst('.', '');
   }
 
   final screenPaddingX = const EdgeInsets.symmetric(horizontal: 16);

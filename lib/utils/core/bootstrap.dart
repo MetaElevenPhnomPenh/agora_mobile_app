@@ -47,7 +47,6 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   await _setUpHive();
 
   // Add cross-flavor configuration here
-  _initData();
   runApp(await builder());
 }
 
@@ -70,11 +69,5 @@ void setOrientation() {
 Future _openHiveBoxSync() async {
   for (var boxName in StorageBox.values) {
     await Hive.openBox(boxName.name);
-  }
-}
-
-Future _initData() async {
-  if (app.isLogin) {
-    app.context.read<ProfileCubit>().pastFromStorage();
   }
 }
