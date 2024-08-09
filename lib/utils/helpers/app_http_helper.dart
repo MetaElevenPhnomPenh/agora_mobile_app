@@ -4,20 +4,6 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:agora/export.dart';
 
-enum AppHttpMethod { GET, POST, PUT, DELETE, PATCH, ALL }
-
-class AppHttpFilter {
-  final AppHttpMethod method;
-  final bool isContain;
-  final bool Function(String url, AppHttpFilter v)? condition;
-
-  const AppHttpFilter({
-    required this.method,
-    this.isContain = false,
-    this.condition,
-  });
-}
-
 class AppHttpHelper {
   static final Dio _dio = DioClient.instance;
 

@@ -16,8 +16,8 @@ class DioClient {
   //header
   static Dio getInstance() {
     Dio httpClient = Dio(BaseOptions(
-      receiveTimeout: 5000,
-      sendTimeout: null,
+      receiveTimeout: 2000,
+      sendTimeout: 2000,
       baseUrl: AppEnv.baseUrl,
       headers: {
         "Content-Type": "application/json",
@@ -25,6 +25,29 @@ class DioClient {
         'Access-Control-Allow-Origin': '*',
       },
     ));
+
+    httpClient.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          if (kDebugMode) {
+            log(options.path, name: 'DioRequestPath');
+          }
+          final String? userToken = app.token?.accessToken;
+          log('Token: $userToken');
+          options.headers.addAll({
+            "Authorization": "Bearer $userToken",
+          });
+          return handler.next(options);
+        },
+        onError: (error, handler) async {
+          log('Debugger: ${error.requestOptions.baseUrl}${error.requestOptions.uri.path}', name: 'Error');
+          return handler.next(error);
+        },
+        onResponse: (response, handler) async {
+          handler.next(response);
+        },
+      ),
+    );
 
     _dio = httpClient;
     return httpClient;

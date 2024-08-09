@@ -5,7 +5,7 @@ import 'package:agora/export.dart';
 abstract class AuthInterface {
   Future<BaseResponse<RegisterResponse>> register(RegisterRequest request);
 
-  Future<BaseResponse<VerifyOtpResponse>> verifyOtp(VerifyOtpRequest request);
+  Future<BaseResponse<TokenHivebox>> verifyOtp(VerifyOtpRequest request);
 
   Future<BaseResponse<RegisterResponse>> login(RegisterRequest request);
 }
@@ -21,7 +21,7 @@ class AuthRepository implements AuthInterface {
   }
 
   @override
-  Future<BaseResponse<VerifyOtpResponse>> verifyOtp(VerifyOtpRequest request) {
+  Future<BaseResponse<TokenHivebox>> verifyOtp(VerifyOtpRequest request) {
     return _service.verifyOtp(request);
   }
 
@@ -43,8 +43,8 @@ class AuthService implements AuthInterface {
   }
 
   @override
-  Future<BaseResponse<VerifyOtpResponse>> verifyOtp(VerifyOtpRequest request) {
-    return DioClient.postMethod<VerifyOtpResponse>(
+  Future<BaseResponse<TokenHivebox>> verifyOtp(VerifyOtpRequest request) {
+    return DioClient.postMethod<TokenHivebox>(
       path: '/api/auth/verify-otp',
       request: request.toJson(),
     );

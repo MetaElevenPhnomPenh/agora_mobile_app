@@ -17,11 +17,10 @@ class UserProfileHiveboxAdapter extends TypeAdapter<UserProfileHivebox> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return UserProfileHivebox(
-      id: fields[0] as String,
-      email: fields[1] as String,
-      isVerify: fields[2] as bool,
-      phoneNumber: fields[3] as String,
-      profile: fields[4] as String,
+      id: fields[0] as int,
+      email: fields[1] as String?,
+      phoneNumber: fields[3] as String?,
+      profile: fields[4] as String?,
       type: fields[5] as String,
       username: fields[6] as String,
     );
@@ -30,13 +29,11 @@ class UserProfileHiveboxAdapter extends TypeAdapter<UserProfileHivebox> {
   @override
   void write(BinaryWriter writer, UserProfileHivebox obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.email)
-      ..writeByte(2)
-      ..write(obj.isVerify)
       ..writeByte(3)
       ..write(obj.phoneNumber)
       ..writeByte(4)
@@ -64,11 +61,10 @@ class UserProfileHiveboxAdapter extends TypeAdapter<UserProfileHivebox> {
 
 UserProfileHivebox _$UserProfileHiveboxFromJson(Map<String, dynamic> json) =>
     UserProfileHivebox(
-      id: json['id'] as String,
-      email: json['email'] as String,
-      isVerify: json['is_verify'] as bool,
-      phoneNumber: json['phone_number'] as String,
-      profile: json['profile'] as String,
+      id: (json['id'] as num).toInt(),
+      email: json['email'] as String?,
+      phoneNumber: json['phone_number'] as String?,
+      profile: json['profile'] as String?,
       type: json['type'] as String,
       username: json['username'] as String,
     );
@@ -77,7 +73,6 @@ Map<String, dynamic> _$UserProfileHiveboxToJson(UserProfileHivebox instance) =>
     <String, dynamic>{
       'id': instance.id,
       'email': instance.email,
-      'is_verify': instance.isVerify,
       'phone_number': instance.phoneNumber,
       'profile': instance.profile,
       'type': instance.type,

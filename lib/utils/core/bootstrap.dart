@@ -33,13 +33,13 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   //Bloc.observer = const AppBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
-  var widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  //var widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
 
   setOrientation();
   // WidgetsBinding.instance.addObserver(RequestAuthOnResume());
 
   // Starts showing splash and will call to remove() later
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   // Initial hive
   await _setUpHive();
@@ -67,6 +67,6 @@ void setOrientation() {
 
 Future _openHiveBoxSync() async {
   for (var boxName in StorageBox.values) {
-    await Hive.openBox(boxName.toString());
+    await Hive.openBox(boxName.name);
   }
 }

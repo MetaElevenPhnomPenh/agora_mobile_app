@@ -1,7 +1,7 @@
 import 'package:agora/export.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppGlobal {
-
   NavigationHelper get navigate => NavigationHelper();
 
   BuildContext get context => globalKey.currentState!.context;
@@ -14,8 +14,16 @@ class AppGlobal {
     FocusScope.of(context).requestFocus(FocusNode());
   }
 
+  bool get isLogin => tokenStorage.get() != null;
+
+  UserStorage get userStorage => UserStorage();
+
+  TokenStorage get tokenStorage => TokenStorage();
+
+  TokenHivebox? get token => tokenStorage.get();
+
+
   final screenPaddingX = const EdgeInsets.symmetric(horizontal: 16);
   final screenPaddingY = const EdgeInsets.symmetric(vertical: 20);
   final screenPadding = const EdgeInsets.symmetric(vertical: 20, horizontal: 16);
-
 }

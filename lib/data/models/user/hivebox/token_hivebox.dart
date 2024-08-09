@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:agora/export.dart';
 import 'package:json_annotation/json_annotation.dart';
+
 part 'token_hivebox.g.dart';
 
 @JsonSerializable()
@@ -18,7 +21,6 @@ class TokenHivebox {
   @JsonKey(name: 'refresh_token')
   final String refreshToken;
 
-
   TokenHivebox copyWith({
     String? accessToken,
     String? refreshToken,
@@ -35,4 +37,9 @@ class TokenHivebox {
 
 // toJson
   Map<String, dynamic> toJson() => _$TokenHiveboxToJson(this);
+
+  @override
+  String toString() {
+    return json.encode(toJson());
+  }
 }

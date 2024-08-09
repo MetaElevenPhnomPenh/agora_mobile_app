@@ -1,6 +1,8 @@
 /// me_page
 import 'package:agora/data/_.dart';
 import 'package:agora/export.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MePage extends StatefulWidget {
   static const String route = '/MePage';
@@ -13,6 +15,20 @@ class MePage extends StatefulWidget {
 }
 
 class _MePageState extends State<MePage> {
+  late final ProfileCubit cubit;
+
+  @override
+  void initState() {
+    cubit = context.read<ProfileCubit>();
+    if (app.isLogin) {
+      cubit.request();
+      if (kDebugMode) {
+        print(app.tokenStorage.get());
+      }
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,12 +48,17 @@ class _MePageState extends State<MePage> {
           8.sw(),
         ],
       ),
-      body: AppListViewBuilder(
-        children: [
-          sectionAvatar(),
-          sectionMenu(),
-        ],
-      ).separated((context, index) => 20.sh()),
+      body: BlocBuilder<ProfileCubit, ProfileState>(
+        builder: (context, state) {
+          final UserProfileHivebox? user = app.isLogin ? state.data : null;
+          return AppListViewBuilder(
+            children: [
+              sectionAvatar(user),
+              sectionMenu(),
+            ],
+          ).separated((context, index) => 20.sh());
+        },
+      ),
     );
   }
 
@@ -130,9 +151,9 @@ class _MePageState extends State<MePage> {
     );
   }
 
-  Widget sectionAvatar() {
+  Widget sectionAvatar([UserProfileHivebox? user]) {
     return AppGestureDetector(
-      onTap: () => context.navigate.pushNamed(LoginPage.route),
+      onTap: () => user == null ? context.navigate.pushNamed(LoginPage.route) : null,
       child: Container(
         padding: app.screenPaddingX,
         child: Row(
@@ -155,8 +176,13 @@ class _MePageState extends State<MePage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Login OR Register', style: context.textTheme.headlineSmall),
-                  Text('Login to get more surprises', style: context.textTheme.bodySmall),
+                  if (user == null) ...[
+                    Text('Login OR Register', style: context.textTheme.headlineSmall),
+                    Text('Login to get more surprises', style: context.textTheme.bodySmall),
+                  ] else ...[
+                    Text(user.username, style: context.textTheme.headlineSmall),
+                    Text(user.phoneNumber ?? (user.email ?? ''), style: context.textTheme.bodySmall),
+                  ],
                 ],
               ),
             ),

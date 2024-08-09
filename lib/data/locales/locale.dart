@@ -231,6 +231,13 @@ class T {
     km: 'ចុះឈ្មោះជាមួយលេខទូរស័ព្ទដៃ',
   );
 
+  static const logout = _(
+    en: 'Logout',
+    zh: '注销',
+    vi: 'Đăng xuất',
+    km: 'ដមនើញ់បំផុតកេត',
+  );
+
   static I18n t(String text) {
     if (_map.containsKey(text)) {
       return _map[text]!;

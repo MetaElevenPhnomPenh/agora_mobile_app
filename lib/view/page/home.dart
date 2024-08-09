@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
               ),
               SizedBox(
                 width: context.mediaQuery.size.width,
-                child: OutlinedButton(onPressed: () => context.navigate.pushNamed(LoginPage.route), child: Text(T.login.r)),
+                child: app.isLogin ? OutlinedButton(onPressed: () {}, child: Text(T.logout.r)) : OutlinedButton(onPressed: () => context.navigate.pushNamed(LoginPage.route), child: Text(T.login.r)),
               ),
             ],
           ),

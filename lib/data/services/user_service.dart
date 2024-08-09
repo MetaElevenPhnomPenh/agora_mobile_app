@@ -4,7 +4,7 @@ import 'package:agora/export.dart';
 ////////////////// Interface
 
 abstract class UserInterface {
-  Future<BaseResponse<ProfileResponse>> profile({String? id});
+  Future<BaseResponse<UserProfileHivebox>> profile({String? id});
 }
 
 ////////////////// Repository
@@ -13,7 +13,7 @@ class UserRepository implements UserInterface {
   final UserService _service = UserService();
 
   @override
-  Future<BaseResponse<ProfileResponse>> profile({String? id}) {
+  Future<BaseResponse<UserProfileHivebox>> profile({String? id}) {
     return _service.profile(id: id);
   }
 }
@@ -22,7 +22,7 @@ class UserRepository implements UserInterface {
 
 class UserService implements UserInterface {
   @override
-  Future<BaseResponse<ProfileResponse>> profile({String? id}) {
-    return DioClient.postMethod<ProfileResponse>(path: '/api/user/profile', request: {if (id != null) 'id': id});
+  Future<BaseResponse<UserProfileHivebox>> profile({String? id}) {
+    return DioClient.getMethod<UserProfileHivebox>(path: '/api/user/profile', queryParameters: {if (id != null) 'id': id});
   }
 }
