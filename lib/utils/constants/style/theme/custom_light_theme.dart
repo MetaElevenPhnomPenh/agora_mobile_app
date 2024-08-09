@@ -375,10 +375,12 @@ final ThemeData customLightTheme = ThemeData(
     unselectedLabelStyle: TextStyle(
       fontSize: 14,
       color: Colors.black.withOpacity(0.7),
+      fontFamily: _fontFamily,
     ),
     labelStyle: const TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.w700,
+      fontFamily: _fontFamily,
     ),
   ),
   chipTheme: const ChipThemeData(
