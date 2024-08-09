@@ -61,11 +61,17 @@ class DioClient {
     CancelToken? cancelToken,
     Map<String, File>? file,
     Map<String, List<File>>? files,
+    int? receiveTimeout,
+    int? sendTimeout,
   }) async {
     try {
       Dio dio = DioClient.instance;
       var res = await dio.post(
         path,
+        options: Options(
+          receiveTimeout: receiveTimeout,
+          sendTimeout: sendTimeout,
+        ),
         data: await _formData(request: request, file: file, files: files),
         onSendProgress: onSendProgress,
         cancelToken: cancelToken,
@@ -87,6 +93,8 @@ class DioClient {
     required String path,
     Map<String, dynamic>? queryParameters,
     void Function(dynamic)? onResponse,
+    int? receiveTimeout,
+    int? sendTimeout,
   }) async {
     try {
       /// Test slow performance 15s
@@ -95,6 +103,10 @@ class DioClient {
       var res = await dio.get(
         path,
         queryParameters: queryParameters,
+        options: Options(
+          receiveTimeout: receiveTimeout,
+          sendTimeout: sendTimeout,
+        ),
       );
       log('Response: $res', name: 'GET');
       return BaseResponse.fromMap(res, (data) {
@@ -115,12 +127,18 @@ class DioClient {
     void Function(dynamic)? onResponse,
     Map<String, File>? file,
     Map<String, List<File>>? files,
+    int? receiveTimeout,
+    int? sendTimeout,
   }) async {
     try {
       Dio dio = DioClient.instance;
       var res = await dio.put(
         path,
         data: await _formData(request: request, file: file, files: files),
+        options: Options(
+          receiveTimeout: receiveTimeout,
+          sendTimeout: sendTimeout,
+        ),
       );
       log('Response: $res', name: 'PUT');
       return BaseResponse.fromMap(res, (data) {
@@ -139,10 +157,19 @@ class DioClient {
     dynamic request,
     required String path,
     void Function(dynamic)? onResponse,
+    int? receiveTimeout,
+    int? sendTimeout,
   }) async {
     try {
       Dio dio = DioClient.instance;
-      var res = await dio.delete(path, data: request);
+      var res = await dio.delete(
+        path,
+        data: request,
+        options: Options(
+          receiveTimeout: receiveTimeout,
+          sendTimeout: sendTimeout,
+        ),
+      );
       log('Response: $res', name: 'DELETE');
       return BaseResponse.fromMap(res, (data) {
         try {

@@ -3,23 +3,25 @@
 part of 'profile_response.dart';
 
 // **************************************************************************
-// JsonSerializableGenerator
+// JsonGenerator
 // **************************************************************************
 
+// From Json Method
 ProfileResponse _$ProfileResponseFromJson(Map<String, dynamic> json) =>
     ProfileResponse(
-      email: json['email'] as String,
-      id: json['id'] as String,
-      isVerify: json['is_verify'] as bool,
-      phoneNumber: json['phone_number'] as String,
-      profile: json['profile'] as String,
-      registerCount: (json['register_count'] as num).toInt(),
-      totalBalance: (json['total_balance'] as num).toInt(),
-      totalSpend: (json['total_spend'] as num).toInt(),
-      type: json['type'] as String,
-      username: json['username'] as String,
+      email: json['email'].toString().toAppString()!,
+      id: json['id'].toString().toAppString()!,
+      isVerify: json['is_verify'] == true,
+      phoneNumber: json['phone_number'].toString().toAppString()!,
+      profile: json['profile'].toString().toAppString()!,
+      registerCount: json['register_count'].toString().toAppInt(),
+      totalBalance: json['total_balance'].toString().toAppInt(),
+      totalSpend: json['total_spend'].toString().toAppInt(),
+      type: json['type'].toString().toAppString()!,
+      username: json['username'].toString().toAppString()!,
     );
 
+// To Json Method
 Map<String, dynamic> _$ProfileResponseToJson(ProfileResponse instance) =>
     <String, dynamic>{
       'email': instance.email,
@@ -33,3 +35,32 @@ Map<String, dynamic> _$ProfileResponseToJson(ProfileResponse instance) =>
       'type': instance.type,
       'username': instance.username,
     };
+
+// Extension for a ProfileResponse class to provide 'copyWith' method
+extension $ProfileResponseExtension on ProfileResponse {
+  ProfileResponse copyWith({
+    String? email,
+    String? id,
+    bool? isVerify,
+    String? phoneNumber,
+    String? profile,
+    int? registerCount,
+    int? totalBalance,
+    int? totalSpend,
+    String? type,
+    String? username,
+  }) {
+    return ProfileResponse(
+      email: email ?? this.email,
+      id: id ?? this.id,
+      isVerify: isVerify ?? this.isVerify,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      profile: profile ?? this.profile,
+      registerCount: registerCount ?? this.registerCount,
+      totalBalance: totalBalance ?? this.totalBalance,
+      totalSpend: totalSpend ?? this.totalSpend,
+      type: type ?? this.type,
+      username: username ?? this.username,
+    );
+  }
+}

@@ -44,16 +44,31 @@ class TokenHiveboxAdapter extends TypeAdapter<TokenHivebox> {
 }
 
 // **************************************************************************
-// JsonSerializableGenerator
+// JsonGenerator
 // **************************************************************************
 
+// From Json Method
 TokenHivebox _$TokenHiveboxFromJson(Map<String, dynamic> json) => TokenHivebox(
-      accessToken: json['access_token'] as String,
-      refreshToken: json['refresh_token'] as String,
+      accessToken: json['access_token'].toString().toAppString()!,
+      refreshToken: json['refresh_token'].toString().toAppString()!,
     );
 
+// To Json Method
 Map<String, dynamic> _$TokenHiveboxToJson(TokenHivebox instance) =>
     <String, dynamic>{
       'access_token': instance.accessToken,
       'refresh_token': instance.refreshToken,
     };
+
+// Extension for a TokenHivebox class to provide 'copyWith' method
+extension $TokenHiveboxExtension on TokenHivebox {
+  TokenHivebox copyWith({
+    String? accessToken,
+    String? refreshToken,
+  }) {
+    return TokenHivebox(
+      accessToken: accessToken ?? this.accessToken,
+      refreshToken: refreshToken ?? this.refreshToken,
+    );
+  }
+}

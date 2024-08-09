@@ -1,10 +1,10 @@
 /// become_seller_response
 import 'package:agora/export.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:annotations/annotations.dart';
 
 part 'become_seller_response.g.dart';
 
-@JsonSerializable()
+@JsonAnnotation()
 class BecomeSellerResponse {
   BecomeSellerResponse({
     required this.status,

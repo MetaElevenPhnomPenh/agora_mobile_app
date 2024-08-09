@@ -3,28 +3,33 @@
 part of 'create_store_response.dart';
 
 // **************************************************************************
-// JsonSerializableGenerator
+// JsonGenerator
 // **************************************************************************
 
+// From Json Method
 CreateStoreResponse _$CreateStoreResponseFromJson(Map<String, dynamic> json) =>
     CreateStoreResponse(
-      contactNumber: json['contact_number'] as String,
-      description: json['description'] as String,
-      email: json['email'] as String,
-      followerCount: (json['follower_count'] as num).toInt(),
-      id: (json['id'] as num).toInt(),
-      isBanned: json['is_banned'] as bool,
-      isDeleted: json['is_deleted'] as bool,
-      isVerify: json['is_verify'] as bool,
-      likeCount: (json['like_count'] as num).toInt(),
-      name: json['name'] as String,
-      type: json['type'] as String,
-      unbannedAt: json['unbanned_at'] as String,
-      updatedAt: json['updated_at'] as String,
-      verifyType: json['verify_type'] as String,
-      websiteUrl: json['website_url'] as String,
+      contactNumber: json['contact_number'].toString().toAppString()!,
+      description: json['description'].toString().toAppString()!,
+      email:
+          json['email'] == null ? null : json['email'].toString().toAppString(),
+      followerCount: json['follower_count'].toString().toAppInt(),
+      id: json['id'].toString().toAppInt(),
+      isBanned: json['is_banned'] == true,
+      isDeleted: json['is_deleted'] == true,
+      isVerify: json['is_verify'] == true,
+      likeCount: json['like_count'].toString().toAppInt(),
+      name: json['name'].toString().toAppString()!,
+      type: json['type'].toString().toAppString()!,
+      unbannedAt: json['unbanned_at'].toString().toAppString()!,
+      updatedAt: json['updated_at'].toString().toAppString()!,
+      verifyType: json['verify_type'].toString().toAppString()!,
+      websiteUrl: json['website_url'] == null
+          ? null
+          : json['website_url'].toString().toAppString(),
     );
 
+// To Json Method
 Map<String, dynamic> _$CreateStoreResponseToJson(
         CreateStoreResponse instance) =>
     <String, dynamic>{
@@ -44,3 +49,42 @@ Map<String, dynamic> _$CreateStoreResponseToJson(
       'verify_type': instance.verifyType,
       'website_url': instance.websiteUrl,
     };
+
+// Extension for a CreateStoreResponse class to provide 'copyWith' method
+extension $CreateStoreResponseExtension on CreateStoreResponse {
+  CreateStoreResponse copyWith({
+    String? contactNumber,
+    String? description,
+    String? email,
+    int? followerCount,
+    int? id,
+    bool? isBanned,
+    bool? isDeleted,
+    bool? isVerify,
+    int? likeCount,
+    String? name,
+    String? type,
+    String? unbannedAt,
+    String? updatedAt,
+    String? verifyType,
+    String? websiteUrl,
+  }) {
+    return CreateStoreResponse(
+      contactNumber: contactNumber ?? this.contactNumber,
+      description: description ?? this.description,
+      email: email ?? this.email,
+      followerCount: followerCount ?? this.followerCount,
+      id: id ?? this.id,
+      isBanned: isBanned ?? this.isBanned,
+      isDeleted: isDeleted ?? this.isDeleted,
+      isVerify: isVerify ?? this.isVerify,
+      likeCount: likeCount ?? this.likeCount,
+      name: name ?? this.name,
+      type: type ?? this.type,
+      unbannedAt: unbannedAt ?? this.unbannedAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      verifyType: verifyType ?? this.verifyType,
+      websiteUrl: websiteUrl ?? this.websiteUrl,
+    );
+  }
+}

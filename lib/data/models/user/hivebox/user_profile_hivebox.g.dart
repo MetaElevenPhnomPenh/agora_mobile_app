@@ -56,19 +56,26 @@ class UserProfileHiveboxAdapter extends TypeAdapter<UserProfileHivebox> {
 }
 
 // **************************************************************************
-// JsonSerializableGenerator
+// JsonGenerator
 // **************************************************************************
 
+// From Json Method
 UserProfileHivebox _$UserProfileHiveboxFromJson(Map<String, dynamic> json) =>
     UserProfileHivebox(
-      id: (json['id'] as num).toInt(),
-      email: json['email'] as String?,
-      phoneNumber: json['phone_number'] as String?,
-      profile: json['profile'] as String?,
-      type: json['type'] as String,
-      username: json['username'] as String,
+      id: json['id'].toString().toAppInt(),
+      email:
+          json['email'] == null ? null : json['email'].toString().toAppString(),
+      phoneNumber: json['phone_number'] == null
+          ? null
+          : json['phone_number'].toString().toAppString(),
+      profile: json['profile'] == null
+          ? null
+          : json['profile'].toString().toAppString(),
+      type: json['type'].toString().toAppString()!,
+      username: json['username'].toString().toAppString()!,
     );
 
+// To Json Method
 Map<String, dynamic> _$UserProfileHiveboxToJson(UserProfileHivebox instance) =>
     <String, dynamic>{
       'id': instance.id,
@@ -78,3 +85,24 @@ Map<String, dynamic> _$UserProfileHiveboxToJson(UserProfileHivebox instance) =>
       'type': instance.type,
       'username': instance.username,
     };
+
+// Extension for a UserProfileHivebox class to provide 'copyWith' method
+extension $UserProfileHiveboxExtension on UserProfileHivebox {
+  UserProfileHivebox copyWith({
+    int? id,
+    String? email,
+    String? phoneNumber,
+    String? profile,
+    String? type,
+    String? username,
+  }) {
+    return UserProfileHivebox(
+      id: id ?? this.id,
+      email: email ?? this.email,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      profile: profile ?? this.profile,
+      type: type ?? this.type,
+      username: username ?? this.username,
+    );
+  }
+}

@@ -1,11 +1,11 @@
 /// create_store_response
 import 'package:agora/export.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:annotations/annotations.dart';
 
 part 'create_store_response.g.dart';
 
 
-@JsonSerializable()
+@JsonAnnotation()
 class CreateStoreResponse {
   CreateStoreResponse({
     required this.contactNumber,
@@ -25,40 +25,21 @@ class CreateStoreResponse {
     required this.websiteUrl,
   });
 
-  @JsonKey(name: 'contact_number')
   final String contactNumber;
   final String description;
-  final String email;
-
-  @JsonKey(name: 'follower_count')
+  final String? email;
   final int followerCount;
   final int id;
-
-  @JsonKey(name: 'is_banned')
   final bool isBanned;
-
-  @JsonKey(name: 'is_deleted')
   final bool isDeleted;
-
-  @JsonKey(name: 'is_verify')
   final bool isVerify;
-
-  @JsonKey(name: 'like_count')
   final int likeCount;
   final String name;
   final String type;
-
-  @JsonKey(name: 'unbanned_at')
   final String unbannedAt;
-
-  @JsonKey(name: 'updated_at')
   final String updatedAt;
-
-  @JsonKey(name: 'verify_type')
   final String verifyType;
-
-  @JsonKey(name: 'website_url')
-  final String websiteUrl;
+  final String? websiteUrl;
 
   factory CreateStoreResponse.fromJson(Map<String, dynamic> json) => _$CreateStoreResponseFromJson(json);
 

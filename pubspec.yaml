@@ -39,8 +39,9 @@ dependencies:
   pinput: ^5.0.0
   timer_count_down: ^2.2.2
   equatable: ^2.0.5
-  json_annotation: ^4.9.0
   flutter_native_splash: ^2.4.1
+  annotations:
+    path: plugins/json_generator/annotations
 
 dev_dependencies:
   bloc_test: ^9.1.7
@@ -50,7 +51,8 @@ dev_dependencies:
     sdk: flutter
   mocktail: ^1.0.4
   very_good_analysis: ^6.0.0
-  json_serializable: ^6.8.0
+  generators:
+    path: plugins/json_generator/generators
 
 
 flutter:
