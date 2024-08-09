@@ -22,6 +22,8 @@ class _ProductDetailPageState extends State<ProductDetailPage>
   bool lastStatus = false;
   double height = 250;
   final ItemScrollController itemScrollController = ItemScrollController();
+  final ItemPositionsListener itemPositionsListener =
+      ItemPositionsListener.create();
 
   @override
   void initState() {
@@ -29,7 +31,32 @@ class _ProductDetailPageState extends State<ProductDetailPage>
       initialPage: _pageViewIndex,
     );
     _tabController = TabController(length: 4, vsync: this, initialIndex: 0);
+    itemPositionsListener.itemPositions.addListener(() {
+      int _index = findFirstVisibleChildIndex();
+      // 3, 7, 11, 15
+      switch (_index) {
+        case (< 7):
+          _tabController.animateTo(0);
+        case (>= 7 && < 11):
+          _tabController.animateTo(1);
+        case (>= 11 && < 15):
+          _tabController.animateTo(2);
+        case (>= 15):
+          _tabController.animateTo(3);
+        default:
+        //
+      }
+    });
     super.initState();
+  }
+
+  // Function to find the index of the first visible child in the list
+  int findFirstVisibleChildIndex() {
+    var positions = itemPositionsListener.itemPositions;
+    if (positions.value.isNotEmpty) {
+      return positions.value.first.index;
+    }
+    return -1; // If no items are currently visible
   }
 
   @override
@@ -531,6 +558,8 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                 shrinkWrap: true,
                 addRepaintBoundaries: false,
                 itemScrollController: itemScrollController,
+                itemPositionsListener: itemPositionsListener,
+                // scrollOffsetListener: _scrollOffsetListener,
                 itemCount: _listWidget.length,
                 itemBuilder: (context, index) {
                   return _listWidget[index];
