@@ -11,22 +11,19 @@ CreateStoreResponse _$CreateStoreResponseFromJson(Map<String, dynamic> json) =>
     CreateStoreResponse(
       contactNumber: json['contact_number'].toString().toAppString()!,
       description: json['description'].toString().toAppString()!,
-      email:
-          json['email'] == null ? null : json['email'].toString().toAppString(),
-      followerCount: json['follower_count'].toString().toAppInt(),
-      id: json['id'].toString().toAppInt(),
+      email: json['email'].toString().toAppString()!,
+      followerCount: json['follower_count'].toString().toAppString()!,
+      id: json['id'].toString().toAppString()!,
       isBanned: json['is_banned'] == true,
       isDeleted: json['is_deleted'] == true,
       isVerify: json['is_verify'] == true,
-      likeCount: json['like_count'].toString().toAppInt(),
+      likeCount: json['like_count'].toString().toAppString()!,
       name: json['name'].toString().toAppString()!,
       type: json['type'].toString().toAppString()!,
       unbannedAt: json['unbanned_at'].toString().toAppString()!,
       updatedAt: json['updated_at'].toString().toAppString()!,
       verifyType: json['verify_type'].toString().toAppString()!,
-      websiteUrl: json['website_url'] == null
-          ? null
-          : json['website_url'].toString().toAppString(),
+      websiteUrl: json['website_url'].toString().toAppString()!,
     );
 
 // To Json Method
@@ -56,12 +53,12 @@ extension $CreateStoreResponseExtension on CreateStoreResponse {
     String? contactNumber,
     String? description,
     String? email,
-    int? followerCount,
-    int? id,
+    String? followerCount,
+    String? id,
     bool? isBanned,
     bool? isDeleted,
     bool? isVerify,
-    int? likeCount,
+    String? likeCount,
     String? name,
     String? type,
     String? unbannedAt,

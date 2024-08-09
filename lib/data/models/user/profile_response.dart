@@ -24,9 +24,9 @@ class ProfileResponse {
   final bool isVerify;
   final String phoneNumber;
   final String profile;
-  final int registerCount;
-  final int totalBalance;
-  final int totalSpend;
+  final String registerCount;
+  final String totalBalance;
+  final String totalSpend;
   final String type;
   final String username;
 

@@ -27,19 +27,19 @@ class CreateStoreResponse {
 
   final String contactNumber;
   final String description;
-  final String? email;
-  final int followerCount;
-  final int id;
+  final String email;
+  final String followerCount;
+  final String id;
   final bool isBanned;
   final bool isDeleted;
   final bool isVerify;
-  final int likeCount;
+  final String likeCount;
   final String name;
   final String type;
   final String unbannedAt;
   final String updatedAt;
   final String verifyType;
-  final String? websiteUrl;
+  final String websiteUrl;
 
   factory CreateStoreResponse.fromJson(Map<String, dynamic> json) => _$CreateStoreResponseFromJson(json);
 

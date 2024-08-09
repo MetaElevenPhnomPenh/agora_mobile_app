@@ -7,13 +7,17 @@ part of 'become_seller_response.dart';
 // **************************************************************************
 
 // From Json Method
-BecomeSellerResponse _$BecomeSellerResponseFromJson(Map<String, dynamic> json) => BecomeSellerResponse(
+BecomeSellerResponse _$BecomeSellerResponseFromJson(
+        Map<String, dynamic> json) =>
+    BecomeSellerResponse(
       status: json['status'].toString().toAppString()!,
       type: json['type'].toString().toAppString()!,
     );
 
 // To Json Method
-Map<String, dynamic> _$BecomeSellerResponseToJson(BecomeSellerResponse instance) => <String, dynamic>{
+Map<String, dynamic> _$BecomeSellerResponseToJson(
+        BecomeSellerResponse instance) =>
+    <String, dynamic>{
       'status': instance.status,
       'type': instance.type,
     };
